@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="artifact-type" content="narrative">
+  <meta name="design-style" content="carbon">
+  <title>Introduction to IT — Comprehensive Study Portal &amp; Cheat Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@1.43.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #ffffff;
+      --surface-container-low: #f4f4f4;
+      --surface-container: #f4f4f4;
+      --surface-container-high: #e0e0e0;
+      --on-surface: #161616;
+      --on-surface-variant: #525252;
+      --outline: #8d8d8d;
+      --outline-variant: #e0e0e0;
+      --primary: #0f62fe;
+      --primary-hover: #0043ce;
+      --on-primary: #ffffff;
+      --primary-container: #d0e2ff;
+      --on-primary-container: #161616;
+      --secondary: #6f6f6f;
+      --tertiary: #198038;
+      --tertiary-container: #defbe6;
+      --error: #da1e28;
+      --on-error: #ffffff;
+      --positive: #198038;
+      --warning: #b28600;
+      --warning-container: #fcf4d6;
+      --focus: #0f62fe;
+
+      --data-1: #0f62fe;
+      --data-2: #6929c4;
+      --data-3: #005d5d;
+      --data-4: #9f1853;
+      --data-context: #8d8d8d;
+
+      --font-headline: 'IBM Plex Sans', sans-serif;
+      --font-body: 'IBM Plex Sans', sans-serif;
+      --font-label: 'IBM Plex Mono', monospace;
+
+      --rounded: 0.125rem;
+      --rounded-lg: 0.25rem;
+      --rounded-full: 0.75rem;
+
+      --shadow-1: 0 2px 6px rgb(0 0 0 / 0.1);
+      --shadow-2: 0 4px 12px rgb(0 0 0 / 0.12);
+      --rule: 1px solid var(--outline-variant);
+      --rule-strong: 1px solid var(--outline);
+      --field-rule: 1px solid var(--outline);
+      --indicator: 2px solid var(--primary);
+      --indicator-left: 3px solid var(--primary);
+      --positive-bar: 3px solid var(--positive);
+      --warning-bar: 3px solid var(--warning);
+      --error-bar: 3px solid var(--error);
+
+      --display-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+      --headline-size: clamp(1.625rem, 1.25rem + 1.5vw, 2.25rem);
+      --subhead-size: clamp(1.125rem, 1.05rem + 0.4vw, 1.375rem);
+      --body-size: clamp(0.9375rem, 0.9rem + 0.15vw, 1.0625rem);
+      --label-size: 0.75rem;
+
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2.5rem;
+      --space-2xl: 4rem;
+      --space-3xl: 5.5rem;
+
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-micro: 120ms;
+      --dur-short: 220ms;
+      --dur-long: 420ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--on-surface);
+      font-family: var(--font-body);
+      font-size: var(--body-size);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    header { position: static !important; }
+
+    /* Focus rings */
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+    /* Layout shell */
+    .portal-shell {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: var(--space-lg);
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    .portal-shell * { min-width: 0; }
+
+    /* Hero Masthead */
+    .masthead {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) var(--space-lg);
+      border-bottom: var(--rule);
+    }
+    .masthead-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-md);
+    }
+    .label {
+      font-family: var(--font-label);
+      font-size: var(--label-size);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .display-title {
+      font-family: var(--font-headline);
+      font-weight: 300;
+      font-size: var(--display-size);
+      line-height: 1.12;
+      letter-spacing: 0;
+      margin: 0 0 var(--space-md);
+      max-width: 24ch;
+    }
+    .display-title strong { font-weight: 600; }
+    .lede {
+      font-size: var(--subhead-size);
+      color: var(--on-surface-variant);
+      max-width: 65ch;
+      margin: 0 0 var(--space-lg);
+      line-height: 1.5;
+    }
+
+    /* Key KPI strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-lg);
+    }
+    .kpi-tile {
+      background: var(--surface-container);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .kpi-tile.is-primary { border-bottom: var(--indicator); }
+    .kpi-value {
+      font-family: var(--font-label);
+      font-weight: 300;
+      font-size: 1.875rem;
+      line-height: 1.15;
+      color: var(--on-surface);
+    }
+    .kpi-note {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* Sidebar Navigation */
+    .side-rail {
+      position: sticky;
+      top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .rail-box {
+      background: var(--surface-container);
+      padding: var(--space-md);
+    }
+    .rail-nav {
+      list-style: none;
+      margin: var(--space-sm) 0 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .rail-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-sm);
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      border-left: 2px solid transparent;
+      border-top: var(--rule);
+      padding: 0.625rem var(--space-sm);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      cursor: pointer;
+      min-height: 44px;
+      transition: background-color var(--dur-micro) var(--ease-out), border-color var(--dur-micro) var(--ease-out);
+    }
+    .rail-link:first-child { border-top: 0; }
+    .rail-link:hover { background: var(--surface-container-high); }
+    .rail-link.is-active {
+      border-left: var(--indicator);
+      font-weight: 600;
+      background: var(--background);
+    }
+    .rail-num {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      flex-shrink: 0;
+    }
+    .rail-status {
+      font-family: var(--font-label);
+      font-size: 0.6875rem;
+      padding: 0.125rem 0.375rem;
+      border-radius: var(--rounded-full);
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+      flex-shrink: 0;
+    }
+    .rail-status.is-done {
+      background: var(--tertiary-container);
+      color: var(--tertiary);
+      font-weight: 600;
+    }
+
+    /* Search & Filter Controls */
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .input-label {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--on-surface-variant);
+      font-weight: 500;
+    }
+    .carbon-input {
+      width: 100%;
+      height: 40px;
+      background: var(--background);
+      border: 0;
+      border-bottom: var(--field-rule);
+      padding: 0 var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      border-radius: 0;
+    }
+    .carbon-input:focus {
+      outline: 2px solid var(--primary);
+      outline-offset: -2px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--space-sm);
+      min-height: 40px;
+      padding: var(--space-xs) var(--space-md);
+      border: 1px solid transparent;
+      border-radius: 0;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color var(--dur-micro) var(--ease-out), color var(--dur-micro) var(--ease-out);
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--on-primary);
+    }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+    .btn-secondary:hover { background: var(--primary-container); color: var(--on-primary-container); }
+    .btn-ghost {
+      background: var(--surface-container);
+      color: var(--on-surface);
+      border-color: var(--outline-variant);
+    }
+    .btn-ghost:hover { background: var(--surface-container-high); }
+    .btn-sm { min-height: 36px; padding: 0.25rem 0.75rem; font-size: 0.8125rem; }
+
+    /* Mobile top quick jump (visible < 960px) */
+    .mobile-jump {
+      display: none;
+      margin-bottom: var(--space-lg);
+      background: var(--surface-container);
+      padding: var(--space-md);
+    }
+    .mobile-jump-row {
+      display: flex;
+      gap: var(--space-sm);
+      align-items: end;
+      flex-wrap: wrap;
+    }
+    .carbon-select {
+      height: 40px;
+      background: var(--background);
+      border: 0;
+      border-bottom: var(--field-rule);
+      padding: 0 2.25rem 0 var(--space-md);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    /* Main Curriculum Flow */
+    .curriculum-flow {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3xl);
+    }
+    .unit-section {
+      scroll-margin-top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+      padding-bottom: var(--space-xl);
+      border-bottom: var(--rule);
+    }
+    .unit-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: var(--space-md);
+      padding-bottom: var(--space-sm);
+      border-bottom: var(--rule);
+    }
+    .unit-title {
+      font-family: var(--font-headline);
+      font-weight: 300;
+      font-size: var(--headline-size);
+      line-height: 1.18;
+      margin: var(--space-xs) 0 0;
+    }
+    .unit-title strong { font-weight: 600; }
+    .unit-summary {
+      max-width: 65ch;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Interactive Mind Map Module */
+    .mindmap-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(260px, 1fr);
+      gap: 1px;
+      background: var(--outline-variant);
+      border: var(--rule);
+    }
+    .mindmap-canvas-wrap {
+      background: var(--surface-container);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .mindmap-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+    .mindmap-svg-box {
+      background: var(--background);
+      border: var(--rule);
+      width: 100%;
+      overflow-x: auto;
+    }
+    .mindmap-svg {
+      display: block;
+      width: 100%;
+      min-width: 560px;
+      height: auto;
+    }
+    .mm-node { cursor: pointer; }
+    .mm-node rect {
+      transition: fill var(--dur-micro) var(--ease-out), stroke var(--dur-micro) var(--ease-out);
+    }
+    .mm-node:hover rect { fill: var(--primary-container); stroke: var(--primary); }
+    .mm-node.is-selected rect { fill: var(--primary); stroke: var(--primary); }
+    .mm-node.is-selected text { fill: var(--on-primary); }
+    .mm-node.is-root rect { fill: var(--on-surface); stroke: var(--on-surface); }
+    .mm-node.is-root text { fill: var(--on-primary); }
+    .mm-node.is-root.is-selected rect { fill: var(--primary); stroke: var(--primary); }
+
+    .mindmap-inspector {
+      background: var(--background);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .inspector-badge {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      height: 24px;
+      padding: 0 var(--space-sm);
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+    }
+    .inspector-title {
+      font-size: var(--subhead-size);
+      font-weight: 600;
+      margin: 0;
+    }
+    .inspector-desc {
+      margin: 0;
+      color: var(--on-surface-variant);
+      font-size: 0.9375rem;
+    }
+    .inspector-list {
+      margin: var(--space-xs) 0 0;
+      padding-left: 1.125rem;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      font-size: 0.875rem;
+    }
+
+    /* Reference Cheat Sheet Blocks */
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+      gap: var(--space-md);
+    }
+    .layer {
+      background: var(--surface-container);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .layer .layer {
+      background: var(--surface-container-high);
+    }
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--space-sm);
+      border-bottom: var(--rule);
+      padding-bottom: var(--space-xs);
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 0.625rem;
+      border-radius: var(--rounded-full);
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      font-size: 0.75rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .tag-neutral {
+      background: var(--surface-container-high);
+      color: var(--on-surface);
+    }
+    .def-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .def-item {
+      border-top: var(--rule);
+      padding-top: var(--space-xs);
+      font-size: 0.875rem;
+    }
+    .def-item:first-child { border-top: 0; padding-top: 0; }
+    .def-item strong { color: var(--on-surface); font-weight: 600; }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      border: var(--rule);
+    }
+    .carbon-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      text-align: left;
+    }
+    .carbon-table thead th {
+      background: var(--surface-container-high);
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.625rem var(--space-md);
+      border-bottom: var(--rule-strong);
+      color: var(--on-surface);
+    }
+    .carbon-table tbody td {
+      padding: 0.625rem var(--space-md);
+      border-bottom: var(--rule);
+      vertical-align: top;
+    }
+    .carbon-table tbody tr:nth-child(even) {
+      background: var(--surface-container-low);
+    }
+    .mono {
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+    }
+
+    /* Callouts & Notifications */
+    .callout {
+      background: var(--surface-container);
+      padding: var(--space-md);
+      border-left: var(--indicator-left);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .callout.is-positive { border-left: var(--positive-bar); }
+    .callout.is-warning { border-left: var(--warning-bar); }
+    .callout.is-error { border-left: var(--error-bar); }
+
+    /* Interactive Micro-Labs (Cloud/URL & SQL) */
+    .lab-box {
+      background: var(--surface-container);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: var(--rule);
+      gap: var(--space-xs);
+    }
+    .tab-btn {
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--on-surface-variant);
+      cursor: pointer;
+    }
+    .tab-btn:hover { color: var(--on-surface); background: var(--surface-container-high); }
+    .tab-btn.is-active {
+      color: var(--on-surface);
+      font-weight: 600;
+      border-bottom: var(--indicator);
+    }
+    .code-block {
+      background: var(--on-surface);
+      color: var(--background);
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      padding: var(--space-md);
+      overflow-x: auto;
+      line-height: 1.5;
+      margin: 0;
+    }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      border-top: var(--rule);
+      padding: var(--space-sm) 0;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .stack-row:first-child { border-top: 0; }
+    .owner-pill {
+      display: inline-block;
+      padding: 0.25rem 0.625rem;
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      border-radius: var(--rounded-full);
+    }
+    .owner-you { background: var(--primary-container); color: var(--on-primary-container); font-weight: 600; }
+    .owner-provider { background: var(--surface-container-high); color: var(--on-surface-variant); }
+
+    /* URL Anatomy parts */
+    .url-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      background: var(--background);
+      border: var(--rule);
+      padding: var(--space-md);
+      font-family: var(--font-label);
+      font-size: 0.875rem;
+      align-items: center;
+    }
+    .url-part {
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container);
+      padding: 0.25rem 0.5rem;
+      cursor: pointer;
+      font-family: var(--font-label);
+      font-size: 0.8125rem;
+      color: var(--on-surface);
+    }
+    .url-part.is-active {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* Inline Quick Check */
+    .recall-box {
+      border: var(--rule);
+      background: var(--background);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .recall-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+      gap: var(--space-sm);
+    }
+    .recall-opt {
+      text-align: left;
+      background: var(--surface-container);
+      border: 1px solid var(--outline-variant);
+      padding: var(--space-sm) var(--space-md);
+      min-height: 44px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: var(--on-surface);
+      cursor: pointer;
+    }
+    .recall-opt:hover { background: var(--surface-container-high); }
+    .recall-opt.is-correct {
+      background: var(--tertiary-container);
+      border-color: var(--tertiary);
+      font-weight: 600;
+    }
+    .recall-opt.is-wrong {
+      background: var(--surface-container-high);
+      border-color: var(--error);
+    }
+
+    /* Search highlight & filtering */
+    .is-search-hidden { display: none !important; }
+    .search-status {
+      font-family: var(--font-label);
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-xs);
+    }
+
+    /* Collapsible details */
+    details.carbon-details {
+      border: var(--rule);
+      background: var(--background);
+    }
+    details.carbon-details summary {
+      cursor: pointer;
+      padding: var(--space-sm) var(--space-md);
+      font-weight: 600;
+      font-size: 0.875rem;
+      background: var(--surface-container);
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 44px;
+    }
+    details.carbon-details[open] summary { border-bottom: var(--rule); }
+    .details-body { padding: var(--space-md); }
+
+    /* Footer */
+    .portal-footer {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+      border-top: var(--rule);
+      color: var(--on-surface-variant);
+      font-size: 0.8125rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-md);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .portal-shell { grid-template-columns: 1fr; }
+      .side-rail { display: none; }
+      .mobile-jump { display: block; }
+      .mindmap-panel { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .portal-shell, .masthead, .portal-footer { padding: var(--space-md); }
+      .stack-row { grid-template-columns: 1fr; gap: var(--space-xs); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <p class="label">Curriculum Study Portal &amp; Reference Cheat Sheet</p>
+      <div style="display:flex; gap: var(--space-sm); flex-wrap:wrap;">
+        <button type="button" class="btn btn-ghost btn-sm" onclick="exportStudyNotes()">
+          <i data-lucide="download" style="width:16px;height:16px;"></i> Export Study Summary
+        </button>
+        <button type="button" id="reset-progress-btn" class="btn btn-ghost btn-sm" onclick="handleResetProgress(this)">
+          Reset Progress
+        </button>
+      </div>
+    </div>
+    <h1 class="display-title">Introduction to <strong>Information Technology</strong></h1>
+    <p class="lede">An end-to-end interactive reference uniting all eight curriculum domains: explore clickable concept mind maps alongside complete cheat-sheet tables, architecture comparisons, SQL &amp; cloud sandboxes, and self-checks in one continuous scroll.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-tile is-primary">
+        <span class="label">Curriculum Progress</span>
+        <span class="kpi-value" id="kpi-reviewed">0 / 8</span>
+        <span class="kpi-note">Sections marked reviewed</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="label">Concept Check Score</span>
+        <span class="kpi-value" id="kpi-quiz">0 / 8</span>
+        <span class="kpi-note">Recall checks answered correctly</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="label">Interactive Mind Maps</span>
+        <span class="kpi-value">8 Maps</span>
+        <span class="kpi-note">Click any node to inspect details</span>
+      </div>
+      <div class="kpi-tile">
+        <span class="label">Core Reference</span>
+        <span class="kpi-value">35+ Topics</span>
+        <span class="kpi-note">Roles, hardware, networks, SQL, security</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="portal-shell">
+    <aside class="side-rail" aria-label="Curriculum navigation and filter">
+      <div class="rail-box">
+        <div class="control-group">
+          <label class="input-label" for="desktop-search">Filter Topics &amp; Terms</label>
+          <input id="desktop-search" class="carbon-input" type="search" placeholder="e.g. TCP/IP, HIPAA, ALU, JOIN…" oninput="applySearchFilter(this.value)">
+          <span class="search-status" id="search-status">Showing all 8 curriculum sections</span>
+        </div>
+      </div>
+
+      <div class="rail-box">
+        <p class="label">Curriculum Sections</p>
+        <ul class="rail-nav" id="rail-nav-list"></ul>
+      </div>
+
+      <div class="callout">
+        <span class="label">Study Tip</span>
+        <span style="font-size:0.8125rem;">Click nodes inside each visual mind map to inspect definitions and examples side by side with the cheat-sheet tables.</span>
+      </div>
+    </aside>
+
+    <main class="curriculum-flow" id="curriculum-flow">
+      <div class="mobile-jump">
+        <div class="mobile-jump-row">
+          <div class="control-group" style="flex:1; min-width:200px;">
+            <label class="input-label" for="mobile-section-select">Jump to Section</label>
+            <select id="mobile-section-select" class="carbon-select" onchange="jumpToSection(this.value)">
+              <option value="sec-roles">01 — IT Roles &amp; Disciplines</option>
+              <option value="sec-hardware">02 — Computer Hardware &amp; Generations</option>
+              <option value="sec-network">03 — Networking &amp; the Internet</option>
+              <option value="sec-os">04 — Operating Systems &amp; Programming</option>
+              <option value="sec-db">05 — Databases &amp; SQL</option>
+              <option value="sec-sdlc">06 — SDLC &amp; Testing</option>
+              <option value="sec-pm">07 — Project Management</option>
+              <option value="sec-security">08 — Security, Ethics &amp; Continuity</option>
+            </select>
+          </div>
+          <div class="control-group" style="flex:1; min-width:200px;">
+            <label class="input-label" for="mobile-search">Filter Terms</label>
+            <input id="mobile-search" class="carbon-input" type="search" placeholder="Filter topics…" oninput="applySearchFilter(this.value)">
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 1: IT ROLES & DISCIPLINES -->
+      <section class="unit-section" id="sec-roles" data-section-id="sec-roles">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 01 &bull; Foundations &amp; Workforce</p>
+            <h2 class="unit-title">IT Roles &amp; <strong>Computing Disciplines</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-roles" onclick="toggleReviewed('sec-roles')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Computing spans five academic disciplines and four operational role families. Administrators keep systems running securely, Architects blueprint scalable platforms, Engineers build and optimize them, and Analysts translate data and business problems into actionable solutions.</p>
+
+        <div class="mindmap-panel" id="mm-sec-roles"></div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Five Computing Disciplines</h3>
+              <span class="tag">Core Domains</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Computer Engineering:</strong> Designs hardware systems and the low-level software that runs them.</li>
+              <li class="def-item"><strong>Computer Science:</strong> Designs and implements software, solves computing problems, and innovates computing uses.</li>
+              <li class="def-item"><strong>Software Engineering:</strong> Develops and maintains large-scale software systems systematically.</li>
+              <li class="def-item"><strong>Information Systems:</strong> Integrates IT solutions to meet organizational goals, support communication, and process information.</li>
+              <li class="def-item"><strong>Information Technology (IT):</strong> Focuses on managing, maintaining, and securing the technology infrastructure that supports an organization.</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Four Role Families Overview</h3>
+              <span class="tag tag-neutral">Career Architecture</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Administrators:</strong> Manage and maintain systems, networks, and databases; handle troubleshooting, settings, and security protocols.</li>
+              <li class="def-item"><strong>Architects:</strong> Design and plan IT systems, networks, or apps with a focus on scalability, security, and business needs.</li>
+              <li class="def-item"><strong>Engineers:</strong> Use technical expertise, coding, and hardware configuration to design, build, optimize, and adapt systems.</li>
+              <li class="def-item"><strong>Analysts:</strong> Investigate data to uncover patterns, trends, and inefficiencies and propose solutions to complex challenges.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>Family</th>
+                <th>Specific Role</th>
+                <th>Core Responsibility &amp; Practical Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="mono">Admin</td><td><strong>System Administrator</strong></td><td>Hardware/software support; managing email servers, configuring user accounts and file server permissions.</td></tr>
+              <tr><td class="mono">Admin</td><td><strong>Network Administrator</strong></td><td>Designs &amp; maintains organization network; setting up secure Wi-Fi, troubleshooting slow connections.</td></tr>
+              <tr><td class="mono">Admin</td><td><strong>Database Administrator</strong></td><td>Database install, configuration, error resolution; restoring backups after failure, optimizing queries.</td></tr>
+              <tr><td class="mono">Admin</td><td><strong>Security Administrator</strong></td><td>Installs/troubleshoots network security; enterprise antivirus deployment, firewall rule configuration.</td></tr>
+              <tr><td class="mono">Admin</td><td><strong>Web Administrator</strong></td><td>Troubleshoots site errors &amp; tracks usage; fixing broken links, updating content, cross-browser checks.</td></tr>
+              <tr><td class="mono">Architect</td><td><strong>Cloud Architect</strong></td><td>Oversees cloud security &amp; scalability; designing cloud disaster recovery and multi-cloud redundancy.</td></tr>
+              <tr><td class="mono">Architect</td><td><strong>Network Architect</strong></td><td>Designs/monitors traffic &amp; upgrades; planning data center layouts, upgrading links for video streaming.</td></tr>
+              <tr><td class="mono">Architect</td><td><strong>Automation Architect</strong></td><td>Modernizes &amp; automates workflows; automated payroll systems, document approval pipelines.</td></tr>
+              <tr><td class="mono">Architect</td><td><strong>Cybersecurity Architect</strong></td><td>Designs enterprise security systems; secure access control systems, zero-trust security models.</td></tr>
+              <tr><td class="mono">Engineer</td><td><strong>Machine Learning Engineer</strong></td><td>Applies ML to manage/interpret data; predictive customer models, e-commerce recommendation engines.</td></tr>
+              <tr><td class="mono">Engineer</td><td><strong>Software Engineer</strong></td><td>Develops system &amp; application software; mobile banking apps, cloud storage backend code.</td></tr>
+              <tr><td class="mono">Engineer</td><td><strong>Network Engineer</strong></td><td>Configures communication systems; enterprise routers, installing &amp; configuring VPNs for remote staff.</td></tr>
+              <tr><td class="mono">Engineer</td><td><strong>Cloud Engineer</strong></td><td>Migrates &amp; optimizes cloud operations; moving infrastructure to Azure, automated cloud backup jobs.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Technical Support / Help Desk</strong></td><td>Supports workplace tech &amp; user requests; fixing printer connections, troubleshooting Wi-Fi on laptops.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Systems Analyst</strong></td><td>Investigates business problems &amp; designs IS solutions; inventory tracking software, workflow upgrades.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Data Analyst</strong></td><td>Uses statistical methods to extract insights; analyzing sales trends, quarterly metric visualizations.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Security Analyst / Cybersecurity Specialist</strong></td><td>Monitors breaches &amp; risk assessments; protects integrity/confidentiality via encryption &amp; MFA.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Technical Consultant / Project Manager</strong></td><td>Advises clients (ERP/cloud choices) or organizes people, time, and resources for CRM/software rollouts.</td></tr>
+              <tr><td class="mono">Analyst</td><td><strong>Web Developer / Software Tester / Tech Sales</strong></td><td>Builds responsive sites/CMS; runs crash &amp; regression tests; demonstrates cloud/security value to clients.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-roles"></div>
+      </section>
+
+      <!-- SECTION 2: COMPUTER HARDWARE & GENERATIONS -->
+      <section class="unit-section" id="sec-hardware" data-section-id="sec-hardware">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 02 &bull; Architecture &amp; Evolution</p>
+            <h2 class="unit-title">Computer Hardware &amp; <strong>Five Generations</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-hardware" onclick="toggleReviewed('sec-hardware')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Computing evolved from mechanical calculators and vacuum tubes to silicon microprocessors and emerging parallel AI systems. Inside every modern system, the Von Neumann IPOS cycle (Input, Process, Output, Storage) connects the CPU, registers, buses, RAM, and non-volatile storage.</p>
+
+        <div class="mindmap-panel" id="mm-sec-hardware"></div>
+
+        <div class="layer searchable-block">
+          <div class="card-head">
+            <h3 class="card-title">Pre-Electronic Computing Milestones</h3>
+            <span class="tag">Historical Foundations</span>
+          </div>
+          <div class="cheat-grid">
+            <div class="layer">
+              <strong>The Abacus</strong>
+              <span style="font-size:0.875rem;">Beads strung on rods in a frame store values by position; requires a human operator to calculate, otherwise it is merely data storage.</span>
+            </div>
+            <div class="layer">
+              <strong>Leibniz Machine</strong>
+              <span style="font-size:0.875rem;">Gears set mechanically to represent inputs and final state outputs; algorithm for basic arithmetic embedded directly in hardware.</span>
+            </div>
+            <div class="layer">
+              <strong>Babbage &amp; Ada Lovelace</strong>
+              <span style="font-size:0.875rem;">Babbage's Analytical Engine (unbuilt) was programmable via punched paper cards; Ada Lovelace proved it programmable and is the world's first programmer.</span>
+            </div>
+            <div class="layer">
+              <strong>ENIAC</strong>
+              <span style="font-size:0.875rem;">First general-purpose electronic computer and one of the earliest programmable electronic computers (1st Generation).</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>Generation</th>
+                <th>Core Hardware</th>
+                <th>Memory &amp; Storage</th>
+                <th>I/O, OS &amp; Languages</th>
+                <th>Characteristics &amp; Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mono">1st (1946–1959)</td>
+                <td><strong>Vacuum Tubes</strong></td>
+                <td>Magnetic drums (main); punch cards (external).</td>
+                <td>Punch cards in, printouts out. Machine language. No OS (human operators set switches).</td>
+                <td>Enormous, hot, unreliable, power-hungry. <em>ENIAC, UNIVAC, IBM-701, IBM-650.</em></td>
+              </tr>
+              <tr>
+                <td class="mono">2nd (1959–1965)</td>
+                <td><strong>Transistors</strong> (binary 0/1 states)</td>
+                <td>Magnetic core memory; tapes and discs.</td>
+                <td>Punch cards &amp; printouts. Assembly language; early FORTRAN &amp; COBOL. Humans handled punch cards.</td>
+                <td>Smaller, cheaper, faster, less energy, used in atomic energy; still needed A/C. <em>Honeywell 400, IBM 7094, CDC 1604/3600, UNIVAC 1108.</em></td>
+              </tr>
+              <tr>
+                <td class="mono">3rd (1965–1971)</td>
+                <td><strong>Integrated Circuits (ICs)</strong> on silicon semiconductors</td>
+                <td>Improved magnetic disks (Floppy Disk introduced).</td>
+                <td>Keyboards (input), monitors (output). High-level languages. Operating systems enabled multitasking &amp; resource sharing.</td>
+                <td>Cheaper, faster, smaller, more reliable, though complex to manufacture. <em>PDP-8, PDP-11, ICL 2900, IBM 360, IBM 370.</em></td>
+              </tr>
+              <tr>
+                <td class="mono">4th (1971–Present)</td>
+                <td><strong>Microprocessors</strong> (thousands of ICs on one chip)</td>
+                <td>RAM/ROM, hard drives, SSDs, optical/flash storage.</td>
+                <td>GUIs, mouse, handheld input. High-level languages &amp; app software. MS-DOS, Microsoft Windows, macOS.</td>
+                <td>Massive size reduction, portable, economical, universal. <em>IBM first home computer, Apple Macintosh, modern PCs.</em></td>
+              </tr>
+              <tr>
+                <td class="mono">5th (Emerging)</td>
+                <td><strong>ULSI</strong> (Ultra Large Scale Integration) &amp; parallel processing</td>
+                <td>High-density distributed &amp; molecular/quantum media.</td>
+                <td>Natural language input and AI software ecosystems.</td>
+                <td>Supports Artificial Intelligence, Natural Language Processing, Quantum Computing, Molecular Tech, Nanotechnology.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">CPU, Control Unit &amp; 5 Registers</h3>
+              <span class="tag">Clock: GHz</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>ALU (Arithmetic Logic Unit):</strong> Executes math (add/subtract) and logical comparisons.</li>
+              <li class="def-item"><strong>Control Unit:</strong> Transfers data from RAM into registers, informs ALU which registers hold operands, activates ALU, and routes results.</li>
+              <li class="def-item"><strong>MAR (Memory Address Register):</strong> Holds the memory location of data/instruction to access.</li>
+              <li class="def-item"><strong>MDR (Memory Data Register):</strong> Holds actual data moving between RAM and CPU.</li>
+              <li class="def-item"><strong>AC (Accumulator):</strong> Stores results of ALU arithmetic/logic operations.</li>
+              <li class="def-item"><strong>PC (Program Counter):</strong> Stores the address of the next instruction to execute.</li>
+              <li class="def-item"><strong>CIR (Current Instruction Register):</strong> Holds the instruction currently being decoded and executed.</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">System Unit, Buses &amp; Memory</h3>
+              <span class="tag tag-neutral">IPOS &amp; Von Neumann</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>3 Buses:</strong> <em>Address Bus</em> (carries destination addresses), <em>Data Bus</em> (transfers data between CPU/RAM/I/O), <em>Control Bus</em> (carries timing &amp; command signals).</li>
+              <li class="def-item"><strong>Motherboard &amp; Clock:</strong> Main circuit board (soldered + socketed parts, expansion slots/cards, USB/Serial/Parallel ports, power supply). System clock sends regular electrical pulses (1 instruction per pulse).</li>
+              <li class="def-item"><strong>GPU:</strong> Processes 3D graphics and parallel computational workloads beyond rendering.</li>
+              <li class="def-item"><strong>RAM (Primary Memory):</strong> Fast, directly accessible by CPU, volatile/ephemeral (lost on power-off). Used for active multitasking.</li>
+              <li class="def-item"><strong>Secondary Storage:</strong> Non-volatile (HDD spinning magnetic disks; SSD faster flash chips; flash drives, tape, CD/DVD). Measured in MB, GB, TB.</li>
+              <li class="def-item"><strong>Bit &amp; Byte:</strong> A <em>bit</em> is 0 or 1; <strong>8 bits = 1 byte</strong> (enough to store one character such as "M").</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>System Class</th>
+                <th>Architecture &amp; Portability</th>
+                <th>Primary Use Cases</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Supercomputers</strong></td><td>Largest/fastest; thousands of interconnected processors.</td><td>Weather forecasting, scientific simulations, nuclear energy research.</td></tr>
+              <tr><td><strong>Mainframes</strong></td><td>Support hundreds/thousands of simultaneous users &amp; multi-program workloads.</td><td>Large enterprises processing high-volume transactions &amp; records.</td></tr>
+              <tr><td><strong>Workstations</strong></td><td>Single-user technical systems; high-speed CPU, large RAM, pro GPUs.</td><td>Graphics design, music production, CAD/engineering design.</td></tr>
+              <tr><td><strong>Desktops</strong></td><td>Fixed, heavy, separate units; best consumer performance &amp; expandability.</td><td>Office, gaming, heavy personal productivity.</td></tr>
+              <tr><td><strong>Laptops</strong></td><td>Integrated portable unit under ~7 lbs; balances speed and mobility.</td><td>Mobile work, study, travel computing.</td></tr>
+              <tr><td><strong>Handheld / Mobile</strong></td><td>Pocket-sized under 1 lb; integrated screen, limited graphics.</td><td>Communication, quick data access, personal management.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-hardware"></div>
+      </section>
+
+      <!-- SECTION 3: NETWORKING & THE INTERNET -->
+      <section class="unit-section" id="sec-network" data-section-id="sec-network">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 03 &bull; Connectivity, Cloud &amp; Web</p>
+            <h2 class="unit-title">Networking, Cloud Models &amp; <strong>The Internet</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-network" onclick="toggleReviewed('sec-network')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Networks scale from personal Bluetooth PANs to global WANs across physical media and routing hardware. Above the TCP/IP and DNS layers sit cloud service abstractions (IaaS, PaaS, SaaS) and the World Wide Web powered by URLs, HTTP, HTML, and XML.</p>
+
+        <div class="mindmap-panel" id="mm-sec-network"></div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Network Types &amp; Topologies</h3>
+              <span class="tag">PAN / LAN / WAN</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>PAN / LAN / WAN:</strong> <em>PAN</em> (short-range, e.g. wireless earbuds), <em>LAN</em> (single building/complex), <em>WAN</em> (long-distance/global).</li>
+              <li class="def-item"><strong>Open vs. Closed Networks:</strong> <em>Open</em> (public domain like Internet TCP/IP, no license fee); <em>Closed/Proprietary</em> (company-controlled for fees, e.g. Apple App Store).</li>
+              <li class="def-item"><strong>Bus Topology:</strong> Single central coaxial backbone; cheap/simple, but a backbone break fails the entire network.</li>
+              <li class="def-item"><strong>Star Topology:</strong> All nodes connect to a central hub/switch; easy to troubleshoot, single point of failure at the hub.</li>
+              <li class="def-item"><strong>Ring Topology:</strong> Closed loop where each node links to two neighbors; no central hub, but one break downs the ring.</li>
+              <li class="def-item"><strong>Mesh &amp; Hybrid:</strong> <em>Mesh</em> interconnects every node (maximum redundancy/fault-tolerance, expensive); <em>Hybrid</em> combines topologies.</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Hardware, Media &amp; Models</h3>
+              <span class="tag tag-neutral">OSI Physical → Network</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Communication Models:</strong> <em>Client/Server</em> (clients request, central server fulfills, e.g. print server); <em>Peer-to-Peer (P2P)</em> (devices both request &amp; serve, e.g. Gnutella, BitTorrent, gaming).</li>
+              <li class="def-item"><strong>Distributed Systems:</strong> <em>Cluster</em> (independent machines acting as one for HA/load balancing); <em>Grid</em> (loosely coupled workload distribution); <em>Cloud</em> (scalable rented virtual resources like EC2).</li>
+              <li class="def-item"><strong>Transmission Media:</strong> <em>UTP</em> (cheap Ethernet, max 100m, EMI-sensitive); <em>STP</em> (metallic foil blocks EMI); <em>Coaxial</em> (copper + braided shield); <em>Fiber-Optic</em> (light pulses, highest speed); <em>Wireless</em> (Wi-Fi/Bluetooth).</li>
+              <li class="def-item"><strong>Connecting Devices:</strong> <em>Repeater</em> (amplifies signal, e.g. 300ft→500ft); <em>Bridge</em> (links network segments &amp; filters MACs); <em>Switch</em> (sends only to intended recipient, cutting traffic up to 99%); <em>Router</em> (gateway using IP routing tables between LANs/WANs).</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Interactive Lab: Cloud Responsibility & URL Anatomy -->
+        <div class="lab-box searchable-block">
+          <div class="card-head">
+            <h3 class="card-title">Interactive Explorer: Cloud Service Models &amp; URL Anatomy</h3>
+            <span class="tag">Hands-On Reference</span>
+          </div>
+          <div class="tab-bar" role="tablist" aria-label="Cloud service models">
+            <button type="button" class="tab-btn is-active" onclick="selectCloudModel('iaas', this)">IaaS — "Think Hardware"</button>
+            <button type="button" class="tab-btn" onclick="selectCloudModel('paas', this)">PaaS — "Think System Software"</button>
+            <button type="button" class="tab-btn" onclick="selectCloudModel('saas', this)">SaaS — "Think Software Apps"</button>
+          </div>
+          <div id="cloud-model-output"></div>
+
+          <div style="border-top: var(--rule); padding-top: var(--space-md);">
+            <p class="label" style="margin-bottom:var(--space-xs);">Click any URL segment to inspect its role</p>
+            <div class="url-bar">
+              <button type="button" class="url-part is-active" onclick="selectUrlPart('protocol', this)">https://</button>
+              <button type="button" class="url-part" onclick="selectUrlPart('subdomain', this)">portal.</button>
+              <button type="button" class="url-part" onclick="selectUrlPart('domain', this)">wgu</button>
+              <button type="button" class="url-part" onclick="selectUrlPart('tld', this)">.edu</button>
+              <button type="button" class="url-part" onclick="selectUrlPart('path', this)">/courses/it-foundations/</button>
+              <button type="button" class="url-part" onclick="selectUrlPart('doc', this)">study_guide.html</button>
+            </div>
+            <p id="url-part-desc" style="margin:var(--space-sm) 0 0; font-size:0.875rem; color:var(--on-surface-variant);"></p>
+          </div>
+        </div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Internet Addressing &amp; DNS</h3>
+              <span class="tag">IPv4 / IPv6 / ICANN</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>IPv4 vs. IPv6:</strong> IPv4 uses <strong>32-bit</strong> dotted-decimal addresses (exhausted unique supply); IPv6 uses <strong>128-bit</strong> addresses alongside legacy IPv4.</li>
+              <li class="def-item"><strong>DNS &amp; Resolution:</strong> Hierarchical, decentralized system translating mnemonic domain names (e.g. wgu.edu) into numeric IP addresses via root servers and TLD servers.</li>
+              <li class="def-item"><strong>Top-Level Domains (TLDs):</strong> <span class="mono">.com</span> (Commercial), <span class="mono">.gov</span> (Government), <span class="mono">.org</span> (Nonprofit), <span class="mono">.tv</span> (TV stations), plus country-codes (<span class="mono">.uk</span>, <span class="mono">.de</span>).</li>
+              <li class="def-item"><strong>ICANN &amp; DARPA:</strong> <em>ICANN</em> (nonprofit) coordinates operations and awards IP blocks to ISPs; <em>DARPA</em> pioneered early internet research.</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">World Wide Web: HTML vs. XML</h3>
+              <span class="tag tag-neutral">Hypertext &amp; Markup</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>WWW Components:</strong> Hypertext document format with links, HTTP transfer protocol, web server supplying pages, browser rendering text/image/audio/video.</li>
+              <li class="def-item"><strong>HTML (HyperText Markup Language):</strong> Focuses on <strong>appearance</strong> and presentation on screen using predefined tags for layout, links, and multimedia.</li>
+              <li class="def-item"><strong>XML (Extensible Markup Language):</strong> Focuses on <strong>semantics</strong> — describes, stores, and transports structured data as standardized text across different systems.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-network"></div>
+      </section>
+
+      <!-- SECTION 4: OPERATING SYSTEMS & PROGRAMMING -->
+      <section class="unit-section" id="sec-os" data-section-id="sec-os">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 04 &bull; System Software, Licensing &amp; Code</p>
+            <h2 class="unit-title">Operating Systems, Licensing &amp; <strong>Programming</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-os" onclick="toggleReviewed('sec-os')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">The Operating System kernel bridges hardware and applications, while software licensing models dictate whether code can be inspected, shared, or modified. Programs express step-by-step algorithms translated to machine code by compilers or interpreters.</p>
+
+        <div class="mindmap-panel" id="mm-sec-os"></div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Operating Systems &amp; Utilities</h3>
+              <span class="tag">Kernel &amp; File Systems</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>OS &amp; Kernel:</strong> Manages hardware, memory, file systems, and user accounts; the <em>Kernel</em> is the core bridge between hardware and applications.</li>
+              <li class="def-item"><strong>Windows:</strong> Closed-source GUI OS (Microsoft); directory paths use backslashes (<span class="mono">\</span>), root typically <span class="mono">C:\</span>.</li>
+              <li class="def-item"><strong>macOS:</strong> Closed-source, UNIX-based OS (Apple); noted for creative workflows.</li>
+              <li class="def-item"><strong>Linux:</strong> Open-source OS allowing kernel modification; dominates servers; paths use forward slashes (<span class="mono">/</span>) from root <span class="mono">/</span>.</li>
+              <li class="def-item"><strong>Mobile OS:</strong> Google Android (open-source) vs. Apple iOS (closed-source).</li>
+              <li class="def-item"><strong>Utilities &amp; Drivers:</strong> <em>Utility software</em> optimizes/protects systems (antivirus, disk cleanup); <em>Device drivers</em> enable OS-to-hardware communication.</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Algorithms, Compilers &amp; Interpreters</h3>
+              <span class="tag tag-neutral">Execution Models</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Algorithm:</strong> Well-organized, step-by-step instructions or mathematical method to solve a problem (like a recipe); at the heart of machine learning.</li>
+              <li class="def-item"><strong>Compiler:</strong> Checks all code for errors and translates the <em>entire program</em> into machine language before execution (e.g. C++, Java). Faster execution; must recompile after edits.</li>
+              <li class="def-item"><strong>Interpreter:</strong> Translates and executes scripts <em>line-by-line</em> (e.g. Python, Perl). Enables real-time testing, but halts immediately upon hitting an error.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>Model / IP Right</th>
+                <th>Access, Cost &amp; Legal Protection</th>
+                <th>Key Distinctions &amp; Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Closed-Source</strong></td><td>Proprietary; purchase required; source modification prohibited.</td><td>Microsoft Windows, Apple macOS/iOS.</td></tr>
+              <tr><td><strong>Open-Source</strong></td><td>Source code &amp; kernel open for global collaboration and modification.</td><td>Linux, Android (AOSP).</td></tr>
+              <tr><td><strong>Bespoke vs. Off-the-Shelf</strong></td><td>Bespoke: custom-built, high control, expensive. Off-the-shelf: mass-produced, cheaper, vendor-controlled.</td><td>Custom ERP vs. retail productivity suite.</td></tr>
+              <tr><td><strong>Shareware</strong></td><td>Trial limited by time or features; full version requires purchase.</td><td>Protected by EULA &amp; copyright laws.</td></tr>
+              <tr><td><strong>Freeware</strong></td><td>Free to use, but still owned and restricted by creator.</td><td>Protected by EULA &amp; copyright laws.</td></tr>
+              <tr><td><strong>Public Domain</strong></td><td>NO EULA and NO intellectual property protections.</td><td>Anyone may download, use, or modify freely.</td></tr>
+              <tr><td><strong>Copyright</strong></td><td>Automatic upon creation (no application needed); protects expression of ideas for ≥35 years (US software).</td><td>Source code, literary/artistic works, films, music.</td></tr>
+              <tr><td><strong>Patents (Utility vs. Design)</strong></td><td>Exclusive time-limited rights granted via application; protects methods/inventions, not whole packages.</td><td><em>Utility:</em> algorithms, manufacturing processes, devices. <em>Design:</em> smartphone/bottle/auto exterior shape.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-os"></div>
+      </section>
+
+      <!-- SECTION 5: DATABASES & SQL -->
+      <section class="unit-section" id="sec-db" data-section-id="sec-db">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 05 &bull; DIKW, Data Quality &amp; Relational Queries</p>
+            <h2 class="unit-title">Databases, Data Pyramid &amp; <strong>SQL Operations</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-db" onclick="toggleReviewed('sec-db')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Organizations transform raw facts into strategic decisions along the Data Pyramid (DIKW), enforce data hygiene and five quality attributes, and store records in structured relational or flexible NoSQL/cloud databases queried with SQL.</p>
+
+        <div class="mindmap-panel" id="mm-sec-db"></div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>DIKW Tier</th>
+                <th>Key Words</th>
+                <th>Health Care Example</th>
+                <th>Smartwatch &amp; Amazon Examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Data</strong></td>
+                <td>Raw, unprocessed facts, numbers, unstructured observations.</td>
+                <td>Lab test readings, raw patient records, device logs.</td>
+                <td>Steps, heart rate, calories; browsing clicks &amp; search queries.</td>
+              </tr>
+              <tr>
+                <td><strong>Information</strong></td>
+                <td>Organized, structured, processed, summarized, categorized.</td>
+                <td>Formatted charts so doctors/nurses interpret results.</td>
+                <td>Graphs/notifications; popular product &amp; inventory tracking.</td>
+              </tr>
+              <tr>
+                <td><strong>Knowledge</strong></td>
+                <td>Patterns, insights, relationships, causation, trends.</td>
+                <td>Correlating symptoms, test results, and medical histories.</td>
+                <td>Linking sleep quality to activity/HR; forecasting demand trends.</td>
+              </tr>
+              <tr>
+                <td><strong>Wisdom</strong></td>
+                <td>Decide, strategic, recommend, optimize, predict, implement.</td>
+                <td>Making informed clinical decisions on patient treatment.</td>
+                <td>Personalized health coaching; tailored offers &amp; faster logistics.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Data Types, Hygiene &amp; Quality</h3>
+              <span class="tag">3 Steps: Capture → Analyze → Use</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>5 Data Types:</strong> <em>Integers</em> (whole: 4, 34), <em>Floating Point</em> (decimals: 9.5, 1.7), <em>Characters</em> (single: F, !, g), <em>Strings</em> (sequence: Abc, 3erf78!@), <em>Boolean</em> (True/False).</li>
+              <li class="def-item"><strong>Structured vs. Unstructured &amp; Big Data:</strong> <em>Structured</em> (coded tables); <em>Unstructured</em> (video, comments); <em>Big Data</em> (massive, fast-growing datasets exceeding traditional tools).</li>
+              <li class="def-item"><strong>5 Quality Attributes:</strong> <em>Precise</em> (context accuracy), <em>Valid</em> (meets collection rules), <em>Reliable</em> (consistent anywhere), <em>Timely</em> (collected on time), <em>Complete</em> (full picture).</li>
+              <li class="def-item"><strong>5 Dirty Data Problems (Hygiene):</strong> <em>Duplicate</em> (identical records), <em>Conflicting</em> (same record, different attributes), <em>Incomplete</em> (missing fields), <em>Invalid</em> (non-standard), <em>Unsynchronized</em> (not shared across systems).</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">DBMS &amp; 6 Database Models</h3>
+              <span class="tag tag-neutral">PK / FK Architecture</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>DBMS &amp; Keys:</strong> Application layer requests data via the DBMS layer (never directly). Records contain fields; <em>Primary Key (PK)</em> uniquely identifies a row; <em>Foreign Key (FK)</em> links to another table's PK.</li>
+              <li class="def-item"><strong>Flat-File:</strong> Single plain-text delimited file (e.g. CSV); one record per line; no multi-table joins.</li>
+              <li class="def-item"><strong>Hierarchical:</strong> Oldest model; predictable parent/child tree structure.</li>
+              <li class="def-item"><strong>Relational:</strong> Tables logically joined via Primary and Foreign Keys.</li>
+              <li class="def-item"><strong>Object-Oriented / NoSQL / Cloud:</strong> <em>OODB</em> stores native objects; <em>NoSQL</em> uses flexible document/key-value/graph formats at scale; <em>Cloud DBs</em> run remotely as managed services; <em>Data Lakes</em> hold vast raw unstructured data.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Interactive Lab: SQL Query & Join Visualizer -->
+        <div class="lab-box searchable-block">
+          <div class="card-head">
+            <h3 class="card-title">Interactive Lab: SQL Joins, Product &amp; Union Visualizer</h3>
+            <span class="tag">Live Result Set</span>
+          </div>
+          <p style="margin:0; font-size:0.875rem; color:var(--on-surface-variant);">Inspect how relational operations combine <strong>Table A (Customers: C1 Alice, C2 Bob, C3 Cara)</strong> and <strong>Table B (Orders: O101→C1, O102→C2, O103→C9)</strong>, or merge department lists.</p>
+          <div class="tab-bar" role="tablist" aria-label="SQL operations">
+            <button type="button" class="tab-btn is-active" onclick="selectSqlOp('inner', this)">INNER JOIN</button>
+            <button type="button" class="tab-btn" onclick="selectSqlOp('left', this)">LEFT JOIN</button>
+            <button type="button" class="tab-btn" onclick="selectSqlOp('right', this)">RIGHT JOIN</button>
+            <button type="button" class="tab-btn" onclick="selectSqlOp('full', this)">FULL JOIN</button>
+            <button type="button" class="tab-btn" onclick="selectSqlOp('cross', this)">PRODUCT (CROSS JOIN)</button>
+            <button type="button" class="tab-btn" onclick="selectSqlOp('union', this)">UNION vs UNION ALL</button>
+          </div>
+          <div id="sql-lab-output"></div>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-db"></div>
+      </section>
+
+      <!-- SECTION 6: SDLC & TESTING -->
+      <section class="unit-section" id="sec-sdlc" data-section-id="sec-sdlc">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 06 &bull; Software Engineering Lifecycle</p>
+            <h2 class="unit-title">SDLC Phases, Methodologies &amp; <strong>Testing</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-sdlc" onclick="toggleReviewed('sec-sdlc')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">The System Development Life Cycle moves from defining what a system must do to designing how it works, coding, validating quality through white-box and three-stage black-box testing, and sustaining operations across four maintenance modes.</p>
+
+        <div class="mindmap-panel" id="mm-sec-sdlc"></div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">5 SDLC Phases &amp; Maintenance</h3>
+              <span class="tag">Core Lifecycle</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>1. Requirements Analysis:</strong> Defines <em>what</em> the system must do to solve user/business needs.</li>
+              <li class="def-item"><strong>2. Design:</strong> Defines <em>how</em> it will be built (architecture, UI, database schemas).</li>
+              <li class="def-item"><strong>3. Implementation:</strong> Developers translate designs into executable code and build databases.</li>
+              <li class="def-item"><strong>4. Testing:</strong> Verifies code logic, usability, and stakeholder alignment before release.</li>
+              <li class="def-item"><strong>5. Maintenance (4 Types):</strong> <em>Corrective</em> (fix bugs), <em>Adaptive</em> (update for OS/hardware changes), <em>Perfective</em> (enhance speed/features), <em>Preventative</em> (proactive updates to avoid future failure).</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Development Models</h3>
+              <span class="tag tag-neutral">Sequential vs. Iterative</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Waterfall:</strong> Linear, sequential phases; each phase must complete before the next begins.</li>
+              <li class="def-item"><strong>Rapid Prototyping:</strong> Builds early visual mock-ups to validate requirements quickly via user feedback.</li>
+              <li class="def-item"><strong>Agile:</strong> Iterative, flexible approach emphasizing continuous feedback and rapid delivery of small functional increments.</li>
+              <li class="def-item"><strong>Scrum:</strong> Agile framework using fixed-length iterations (<em>sprints</em>), prioritized backlogs, and daily check-ins.</li>
+              <li class="def-item"><strong>Extreme Programming (XP):</strong> Agile practice emphasizing technical excellence via pair programming and test-driven development.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>Testing Concept / Stage</th>
+                <th>Perspective &amp; Purpose</th>
+                <th>Practical Scope</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Pareto Principle (80/20)</strong></td><td>80% of software errors originate in 20% of the system.</td><td>Focuses test sampling on high-risk modules.</td></tr>
+              <tr><td><strong>Glass-Box (White-Box)</strong></td><td>Developers inspect and test internal code structure directly.</td><td><em>Basis Path Testing:</em> ensures every instruction/independent path runs at least once.</td></tr>
+              <tr><td><strong>Black-Box Testing</strong></td><td>Tester has no knowledge of internal code; focuses on UX and behavior.</td><td>Progresses sequentially across Alpha → Beta → User Acceptance.</td></tr>
+              <tr><td><strong>Stage 1: Alpha</strong></td><td>Internal developers or internal UX team test preliminary build.</td><td>Finds bugs, usability flaws, and performance issues before external release.</td></tr>
+              <tr><td><strong>Stage 2: Beta (Pilot)</strong></td><td>Limited segment of real end-users test in real-world scenarios.</td><td>Captures external UX feedback prior to general release.</td></tr>
+              <tr><td><strong>Stage 3: User Acceptance (UAT)</strong></td><td>Users test complete system in an operational setting.</td><td>Confirms alignment with business objectives and stakeholder sign-off.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-sdlc"></div>
+      </section>
+
+      <!-- SECTION 7: PROJECT MANAGEMENT -->
+      <section class="unit-section" id="sec-pm" data-section-id="sec-pm">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 07 &bull; Delivery Governance</p>
+            <h2 class="unit-title">Project Management Lifecycle, <strong>Goals &amp; Risks</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-pm" onclick="toggleReviewed('sec-pm')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Every IT project progresses through four phases—Initiation, Planning, Execution, and Closure—anchored by SMART or CLEAR goals, five formal planning artifacts, and proactive risk mitigation across budget, staffing, technology, and integration.</p>
+
+        <div class="mindmap-panel" id="mm-sec-pm"></div>
+
+        <div class="table-wrap searchable-block">
+          <table class="carbon-table">
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Core Activities &amp; Deliverables</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>1. Project Initiation</strong></td><td>Begins with a business case followed by a feasibility study to justify value and viability.</td></tr>
+              <tr><td><strong>2. Project Planning</strong></td><td>Defines scope, drafts roadmap &amp; project management plan (resources, cost, time estimates), sets SMART/CLEAR goals, and completes 5 core planning documents.</td></tr>
+              <tr><td><strong>3. Project Execution</strong></td><td>Starts with a kickoff meeting; develops project team, assigns resources, sets up KPI tracking, conducts status meetings, monitors timetable, and builds deliverables.</td></tr>
+              <tr><td><strong>4. Project Closure</strong></td><td>Declares project complete, holds retrospective meetings (strengths &amp; improvements), completes final documentation &amp; financial reports, and dissolves team.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">SMART vs. CLEAR Goals</h3>
+              <span class="tag">Goal Frameworks</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>SMART:</strong> <em>Specific</em> (who, what, where, when, which, why), <em>Measurable</em> (success criteria), <em>Attainable</em> (feasible with resources), <em>Realistic</em> (willingness to work toward it), <em>Timely</em> (achievable in timeframe).</li>
+              <li class="def-item"><strong>CLEAR:</strong> <em>Collaborative</em> (teamwork), <em>Limited</em> (bounded scope/time), <em>Emotional</em> (taps into employee passion), <em>Appreciable</em> (large goals broken into quick wins), <em>Refinable</em> (flexible as situations evolve).</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">5 Planning Documents</h3>
+              <span class="tag tag-neutral">End of Planning</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Scope Statement:</strong> Outlines objectives, deliverables, and milestones for the team.</li>
+              <li class="def-item"><strong>Work Breakdown Structure (WBS):</strong> Breaks the project into manageable work segments.</li>
+              <li class="def-item"><strong>Milestones:</strong> High-level checkpoints/goals to meet throughout project duration.</li>
+              <li class="def-item"><strong>Communication Plan:</strong> Frequency and methods for updating stakeholders.</li>
+              <li class="def-item"><strong>Risk Management Plan:</strong> Identifies foreseeable risks including cost overruns and delays.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout is-warning searchable-block">
+          <span class="label">Risk Categories &amp; Mitigation</span>
+          <span style="font-size:0.875rem;"><strong>Execution Risks</strong> (budget, people, technology, requirements — e.g. cost overrun, insufficient staff, inadequate tools, weak stakeholder support) are best mitigated by <em>planning in advance</em>. <strong>Integration Risks</strong> (disruptions to existing systems) are mitigated by assessing disruptions, securing stakeholder support, and shared understanding of complexity. <strong>Risks of the Unknown</strong> are caught early via frequent monitoring of KPIs/milestones and open participant communication.</span>
+        </div>
+
+        <div class="recall-box" id="quiz-sec-pm"></div>
+      </section>
+
+      <!-- SECTION 8: SECURITY, ETHICS & BUSINESS CONTINUITY -->
+      <section class="unit-section" id="sec-security" data-section-id="sec-security">
+        <div class="unit-header">
+          <div>
+            <p class="label">Section 08 &bull; Governance, Defense &amp; Resilience</p>
+            <h2 class="unit-title">Security, Ethics, Laws &amp; <strong>Business Continuity</strong></h2>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-review-sec-security" onclick="toggleReviewed('sec-security')">Mark Section Reviewed</button>
+        </div>
+        <p class="unit-summary">Protecting organizational systems unites ethical culture, the CIA Triad, U.S. regulatory compliance, proactive technical defenses against malware and network attacks, and resilient disaster recovery strategies scaled by recovery speed and cost.</p>
+
+        <div class="mindmap-panel" id="mm-sec-security"></div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">CIA Triad &amp; Ethics</h3>
+              <span class="tag">Core Security Pillars</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Confidentiality:</strong> Rules limiting data access based on potential harm; enforced primarily via access controls &amp; encryption.</li>
+              <li class="def-item"><strong>Integrity:</strong> Keeps data trustworthy, accurate, and unaltered in transit or at rest via permissions, version control, and redundant copies.</li>
+              <li class="def-item"><strong>Availability:</strong> Reliable access for authorized users via hardware maintenance, compatibility testing, and timely OS/app patching.</li>
+              <li class="def-item"><strong>Ethics, Privacy &amp; Security:</strong> <em>Ethics</em> (moral standards shaped by organizational expectations, experiences, philosophy, values, and Code of Conduct); <em>Privacy</em> (proper governance of personal data); <em>Security</em> (preventing unauthorized theft/exploitation).</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Malware, Cyber Attacks &amp; Defenses</h3>
+              <span class="tag tag-neutral">Threats &amp; Controls</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Malware (Intentional Harm):</strong> <em>Viruses</em> (attach to host programs), <em>Worms</em> (self-replicate autonomously across networks), <em>Spyware</em> (covertly logs credentials/cards), <em>Phishing</em> (deceptive impersonation emails).</li>
+              <li class="def-item"><strong>Network &amp; Password Attacks:</strong> <em>DoS</em> (floods resources to break availability), <em>Packet Sniffing / MITM</em> (intercepts traffic), <em>Brute Force</em> (tries all combinations), <em>Dictionary</em> (common word lists), <em>Rainbow Table</em> (matches stored password hashes back to plaintext).</li>
+              <li class="def-item"><strong>5 Key Defenses:</strong> <em>Firewalls</em> (filter trusted/untrusted traffic), <em>Proxy Servers</em> (intermediary shielding clients), <em>Network Auditing</em> (detects traffic anomalies), <em>Antivirus</em> (removes known malware), <em>MFA &amp; Encryption</em> (hardens access &amp; protects data in transit).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cheat-grid">
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">Business Continuity &amp; Disaster Recovery</h3>
+              <span class="tag">Five Nines: 99.999%</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>Uptime &amp; High Availability:</strong> "Five nines" (99.999%) permits only ~3 seconds of downtime/week; <em>High Availability</em> maintains live system replicas for immediate failover.</li>
+              <li class="def-item"><strong>DRP vs. BCP:</strong> <em>Disaster Recovery Plan (DRP)</em> restores IT systems/data after catastrophic failure; <em>Business Continuity Plan (BCP)</em> resumes vital business operations with limited resources while auxiliary services wait.</li>
+              <li class="def-item"><strong>Storage Strategies:</strong> <em>Data Mirroring</em> (simultaneous multi-drive writes), <em>Tape Archival</em> (cheap, portable), <em>Off-site Storage</em> (salt mines/caves/cloud multi-region). Assess off-site sites by <strong>Accessibility, Cost, Environment, Geographic area, and Security</strong>.</li>
+              <li class="def-item"><strong>Hot vs. Cold Storage:</strong> <em>Hot</em> (Azure Hot Blobs, AWS Hot Storage — fastest recovery, premium hardware, high cost); <em>Cold</em> (Tape, Amazon Glacier, Google Coldline — slower recovery, minimal cost).</li>
+            </ul>
+          </div>
+
+          <div class="layer searchable-block">
+            <div class="card-head">
+              <h3 class="card-title">IT Law Bodies &amp; Agencies</h3>
+              <span class="tag tag-neutral">Standards &amp; Oversight</span>
+            </div>
+            <ul class="def-list">
+              <li class="def-item"><strong>CPSR:</strong> Global organization promoting responsible technology use via education.</li>
+              <li class="def-item"><strong>FCC:</strong> Independent U.S. agency regulating radio, TV, wire, satellite, and cable communications.</li>
+              <li class="def-item"><strong>ITS (NTIA):</strong> Research/engineering lab advancing U.S. telecom and information infrastructure.</li>
+              <li class="def-item"><strong>NIST:</strong> Develops standards, measurements, and frameworks for reliable, interoperable, secure systems.</li>
+              <li class="def-item"><strong>NSA:</strong> U.S. agency protecting vital defense, military, and national infrastructure networks (e.g. power grid).</li>
+            </ul>
+          </div>
+        </div>
+
+        <details class="carbon-details searchable-block" open>
+          <summary>
+            <span>U.S. IT Regulations Reference (10 Key Statutes)</span>
+            <span class="mono">EXPAND / COLLAPSE</span>
+          </summary>
+          <div class="details-body">
+            <div class="table-wrap">
+              <table class="carbon-table">
+                <thead>
+                  <tr>
+                    <th>Statute / Regulation</th>
+                    <th>Primary Scope &amp; Protection</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Computer Fraud and Abuse Act (CFAA)</strong></td><td>Anti-hacking law prohibiting intentional unauthorized computer access or exceeding authorization.</td></tr>
+                  <tr><td><strong>Electronic Communication Privacy Act (ECPA)</strong></td><td>Protects private communications; bars ISPs from sharing client communication details.</td></tr>
+                  <tr><td><strong>CALEA (Communication Assistance for Law Enforcement)</strong></td><td>Requires U.S. telecom carriers to adapt equipment to accommodate lawful wiretaps.</td></tr>
+                  <tr><td><strong>Anticybersquatting Consumer Protection Act (ACPA)</strong></td><td>Protects U.S. organizations against confusingly similar trademarked domain purchases.</td></tr>
+                  <tr><td><strong>FISMA (Federal Information Security Management Act)</strong></td><td>Mandates each U.S. federal agency develop and implement an agency-wide information security program.</td></tr>
+                  <tr><td><strong>HIPAA</strong></td><td>Federal protections for personal health information and patient privacy rights.</td></tr>
+                  <tr><td><strong>Section 508 of the Rehabilitation Act</strong></td><td>Requires U.S. federal government IT and communications be accessible to persons with disabilities.</td></tr>
+                  <tr><td><strong>FERPA</strong></td><td>Gives U.S. students rights to protected educational records; prevents unauthorized college disclosure.</td></tr>
+                  <tr><td><strong>Computer Matching and Privacy Protection Act</strong></td><td>Requires written agreements between agencies before sharing data for matching programs.</td></tr>
+                  <tr><td><strong>Digital Millennium Copyright Act (DMCA)</strong></td><td>Specifies rights of copyright owners and users regarding digital media.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </details>
+
+        <div class="recall-box" id="quiz-sec-security"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="portal-footer">
+    <span>Built directly from the 19 Introduction to IT curriculum PDFs, mind maps, and study sheets in your notebook.</span>
+    <span class="mono" id="save-indicator">State synced with Gemini Notebook</span>
+  </footer>
+
+  <api-shim></api-shim>
+
+  <script>
+    const SECTIONS = [
+      { id: 'sec-roles', num: '01', label: 'IT Roles & Disciplines' },
+      { id: 'sec-hardware', num: '02', label: 'Hardware & Generations' },
+      { id: 'sec-network', num: '03', label: 'Networking & Internet' },
+      { id: 'sec-os', num: '04', label: 'OS & Programming' },
+      { id: 'sec-db', num: '05', label: 'Databases & SQL' },
+      { id: 'sec-sdlc', num: '06', label: 'SDLC & Testing' },
+      { id: 'sec-pm', num: '07', label: 'Project Management' },
+      { id: 'sec-security', num: '08', label: 'Security & Continuity' }
+    ];
+
+    const MINDMAPS = {
+      'sec-roles': {
+        root: { id: 'root', label: 'IT Roles & Disciplines', tag: 'Root Overview', desc: `Information Technology integrates computing disciplines and four specialized workforce families to design, build, secure, and analyze organizational systems.`, bullets: [`5 Academic Disciplines`, `4 Operational Families (Admin, Architect, Engineer, Analyst)`, `Cross-functional collaboration from hardware to business strategy`] },
+        nodes: [
+          { id: 'disc', label: '5 Disciplines', tag: 'Academic', desc: `Distinct focus areas across the computing spectrum.`, bullets: [`Computer Engineering: hardware + low-level software`, `Computer Science: software innovation & algorithms`, `Software Engineering: systematic software lifecycle`, `Information Systems: IT aligned to business goals`, `Information Technology: infrastructure management & security`] },
+          { id: 'admin', label: 'Administrators', tag: 'Operate & Secure', desc: `Maintain day-to-day stability, access, and security of infrastructure.`, bullets: [`System Admin: email servers, accounts, file permissions`, `Network Admin: Wi-Fi, connection troubleshooting`, `Database Admin: backups, query tuning`, `Security Admin: antivirus, firewalls`, `Web Admin: broken links, browser compatibility`] },
+          { id: 'arch', label: 'Architects', tag: 'Design & Scale', desc: `Create high-level blueprints balancing scalability, security, and business needs.`, bullets: [`Cloud Architect: multi-cloud & cloud DR designs`, `Network Architect: data center layouts, bandwidth upgrades`, `Automation Architect: payroll & approval workflows`, `Cybersecurity Architect: access control & zero-trust models`] },
+          { id: 'eng', label: 'Engineers', tag: 'Build & Optimize', desc: `Apply coding and hardware configuration to construct and adapt systems.`, bullets: [`ML Engineer: predictive analytics & recommendations`, `Software Engineer: banking apps & cloud storage code`, `Network Engineer: routers & remote VPNs`, `Cloud Engineer: Azure migrations & automated backups`] },
+          { id: 'anal', label: 'Analysts & Support', tag: 'Data & Solutions', desc: `Investigate data, inefficiencies, threats, and user issues to deliver solutions.`, bullets: [`Tech Support: user printers & laptop Wi-Fi`, `Systems Analyst: inventory & workflow software`, `Data Analyst: statistics & performance visuals`, `Security Analyst / Specialist: threat monitoring, MFA, encryption`, `PM, Consultant, Web Dev, Tester, Tech Sales`] }
+        ]
+      },
+      'sec-hardware': {
+        root: { id: 'root', label: 'Hardware & Generations', tag: 'System Core', desc: `Tracing computing from mechanical gears to ULSI processors alongside the Von Neumann IPOS hardware architecture.`, bullets: [`Pioneers: Abacus, Leibniz, Babbage, Ada Lovelace`, `5 Electronic Generations (1946–Emerging)`, `IPOS Cycle: Input, Process, Output, Storage`] },
+        nodes: [
+          { id: 'gen12', label: 'Gen 1 & 2 (1946–65)', tag: 'Tubes → Transistors', desc: `Early room-sized mainframes transitioning from fragile vacuum tubes to binary transistors.`, bullets: [`1st Gen: Vacuum tubes, magnetic drums, punch cards, machine language (ENIAC, UNIVAC)`, `2nd Gen: Transistors (0/1), tapes/discs, Assembly, FORTRAN & COBOL (IBM 7094)`] },
+          { id: 'gen345', label: 'Gen 3, 4 & 5 (1965+)', tag: 'IC → CPU → ULSI', desc: `Semiconductor miniaturization enabling multitasking OS, personal computers, and AI.`, bullets: [`3rd Gen: Integrated Circuits, floppy disks, keyboards/monitors, multitasking OS (IBM 360)`, `4th Gen: Microprocessors, GUIs, mouse, MS-DOS/Windows/Mac`, `5th Gen: ULSI, parallel processing, AI, NLP, Quantum & Nanotech`] },
+          { id: 'cpu', label: 'CPU & 5 Registers', tag: 'Clock in GHz', desc: `The Control Unit, ALU, and ultra-fast registers coordinate every instruction cycle.`, bullets: [`ALU: math & logic; Control Unit: fetches & directs operands`, `MAR: memory address; MDR: data in transit`, `AC: ALU results; PC: next instruction address; CIR: current instruction`] },
+          { id: 'mem', label: 'Buses, RAM & Storage', tag: 'Bit → Byte (8 bits)', desc: `Internal pathways and memory hierarchy separating volatile workspace from persistent drives.`, bullets: [`Buses: Address, Data, and Control buses`, `RAM: fast, volatile primary memory on motherboard`, `Secondary: HDD (spinning disks) vs. SSD (faster flash chips), tape, optical`] },
+          { id: 'types', label: 'Computer Classes', tag: 'Scale & Mobility', desc: `Systems scale from massive scientific clusters to pocket-sized handhelds.`, bullets: [`Supercomputers: weather/nuclear simulations`, `Mainframes: hundreds/thousands of simultaneous users`, `Workstations: pro CAD, music, graphics`, `Desktop (max power) vs. Laptop (<7 lb) vs. Handheld (<1 lb)`] }
+        ]
+      },
+      'sec-network': {
+        root: { id: 'root', label: 'Networking & Internet', tag: 'Connectivity', desc: `Interconnected systems communicate via standard protocols across layered hardware, cloud abstractions, and DNS-resolved web addresses.`, bullets: [`PAN / LAN / WAN & Topologies`, `Cloud Models: IaaS, PaaS, SaaS`, `TCP/IP, DNS, URLs, HTML & XML`] },
+        nodes: [
+          { id: 'topo', label: 'Types & Topologies', tag: 'PAN → WAN', desc: `Physical and logical layouts determine cost, troubleshooting, and fault tolerance.`, bullets: [`Open (Internet/TCP-IP) vs. Closed (App Store)`, `Bus (shared cable), Star (central hub), Ring (closed loop)`, `Mesh (every node connected = high redundancy) & Hybrid`] },
+          { id: 'models', label: 'Comm & Distributed', tag: 'Client/Server vs P2P', desc: `Process communication ranges from central servers to elastic cloud compute.`, bullets: [`Client/Server (central print/web server) vs. P2P (BitTorrent, Gnutella)`, `Cluster (HA/load balance), Grid (distributed workloads), Cloud (EC2)`] },
+          { id: 'devices', label: 'Devices & Media', tag: 'Cable to Router', desc: `Signals traverse copper, glass, or RF waves via specialized forwarding hardware.`, bullets: [`Media: UTP (100m), STP (foil EMI shield), Coax, Fiber-Optic (light), Wireless`, `Repeater (amplifies), Bridge (links segments), Switch (-99% traffic), Router (IP gateways)`] },
+          { id: 'cloud', label: 'IaaS / PaaS / SaaS', tag: 'Cloud Stack', desc: `Each cloud tier shifts more operational responsibility from you to the provider.`, bullets: [`IaaS ("Hardware"): manage OS, apps, data (EC2, Azure VMs)`, `PaaS ("System Software"): manage apps & data (Heroku, Elastic Beanstalk)`, `SaaS ("Apps"): manage data only (Gmail, M365, Zoom)`] },
+          { id: 'web', label: 'IP, DNS, URL & Web', tag: 'IPv4 vs IPv6', desc: `Human-friendly domain names and URLs resolve to numeric IPs to fetch HTML/XML documents.`, bullets: [`IPv4 (32-bit dotted decimal) vs. IPv6 (128-bit); ICANN awards blocks`, `DNS translates domains via Root → TLD (.com, .gov, .org, .tv)`, `HTML (appearance/display) vs. XML (semantic data sharing)`] }
+        ]
+      },
+      'sec-os': {
+        root: { id: 'root', label: 'OS & Programming', tag: 'Software Stack', desc: `System software orchestrates hardware and files, while licensing and translation tools govern how programs are shared and executed.`, bullets: [`Kernel & OS Families`, `Licensing, Shareware, Freeware & IP`, `Algorithms, Compilers & Interpreters`] },
+        nodes: [
+          { id: 'os', label: 'Operating Systems', tag: 'Kernel Bridge', desc: `Manages memory, accounts, drivers, and directory structures across platforms.`, bullets: [`Windows: closed-source, backslash paths (C:\\)`, `macOS: closed-source UNIX-based`, `Linux: open-source modifiable kernel, forward-slash (/)`, `Mobile: Android (open) vs. iOS (closed); Drivers & Utilities`] },
+          { id: 'lic', label: 'Open vs Closed & Sourcing', tag: 'Code Access', desc: `Organizations weigh customization control against cost and vendor maintenance.`, bullets: [`Closed-Source: proprietary, modification banned (Microsoft, Apple)`, `Open-Source: global collaboration on source & kernel (Linux)`, `Bespoke (custom, costly) vs. Off-the-Shelf (mass-market, cheaper)`] },
+          { id: 'pack', label: 'Packaging & IP', tag: 'EULA / Copyright / Patent', desc: `Legal frameworks define trial rights, authorship protection, and inventive exclusivity.`, bullets: [`Shareware (time/feature trial + EULA) vs. Freeware (free + EULA) vs. Public Domain (no EULA/IP)`, `Copyright: automatic on creation; protects expression (≥35 yrs US software)`, `Patents: Utility (algorithms/processes) vs. Design (product exterior)`] },
+          { id: 'prog', label: 'Algorithms & Translators', tag: 'Compiler vs Interpreter', desc: `Translating human-readable high-level code into machine language.`, bullets: [`Algorithm: step-by-step computational recipe (core of ML)`, `Compiler: translates entire program first (C++, Java); recompile on change`, `Interpreter: runs line-by-line (Python, Perl); stops immediately on error`] }
+        ]
+      },
+      'sec-db': {
+        root: { id: 'root', label: 'Databases & SQL', tag: 'Data Lifecycle', desc: `Clean, high-quality data rises through the DIKW pyramid and powers relational and non-relational stores queried via SQL.`, bullets: [`DIKW Data Pyramid`, `Data Types, Quality & Hygiene`, `6 DB Models & SQL Operations`] },
+        nodes: [
+          { id: 'dikw', label: 'Data Pyramid (DIKW)', tag: 'Raw → Action', desc: `Each tier adds context, structure, pattern recognition, and decision value.`, bullets: [`Data: raw facts/numbers; Information: organized & summarized`, `Knowledge: patterns, correlations & causation`, `Wisdom: strategic decisions & personalized recommendations`] },
+          { id: 'qual', label: 'Quality & Hygiene', tag: 'Clean Data', desc: `Evidence-based decisions fail without valid, synchronized records.`, bullets: [`Quality: Precise, Valid, Reliable, Timely, Complete`, `Hygiene fixes: Duplicate, Conflicting, Incomplete, Invalid, Unsynchronized`, `Types: Integer, Float, Char, String, Boolean`] },
+          { id: 'models', label: 'DBMS & 6 Models', tag: 'PK / FK Links', desc: `Applications query the DBMS layer across structured or flexible schemas.`, bullets: [`Flat-File (CSV), Hierarchical (tree), Relational (PK/FK tables)`, `Object-Oriented (objects), NoSQL (document/key-value/graph), Cloud & Data Lakes`] },
+          { id: 'sql', label: 'SQL Queries & Joins', tag: 'SELECT / JOIN / UNION', desc: `Structured Query Language retrieves, filters, and combines multi-table datasets.`, bullets: [`SELECT cols (* = all) FROM table WHERE condition`, `JOINs: INNER (matches), LEFT, RIGHT, FULL`, `PRODUCT (CROSS JOIN = Cartesian rows); UNION (deduped) vs UNION ALL`] }
+        ]
+      },
+      'sec-sdlc': {
+        root: { id: 'root', label: 'SDLC & Testing', tag: 'Engineering Quality', desc: `Structured development models and layered testing validate requirements, internal logic, and real-world business alignment.`, bullets: [`5 SDLC Phases + 4 Maintenance Types`, `Waterfall, Prototyping, Agile, Scrum, XP`, `White-Box & 3-Stage Black-Box Testing`] },
+        nodes: [
+          { id: 'phases', label: '5 SDLC Phases', tag: 'What → How → Maintain', desc: `End-to-end engineering progression from discovery to ongoing upkeep.`, bullets: [`Requirements (WHAT) → Design (HOW) → Implementation → Testing → Maintenance`, `Maintenance: Corrective (bugs), Adaptive (env changes), Perfective (tuning), Preventative`] },
+          { id: 'devmodels', label: 'Development Models', tag: 'Plan vs Iterate', desc: `Teams choose linear predictability or rapid iterative feedback loops.`, bullets: [`Waterfall: strict sequential gates`, `Rapid Prototyping: quick mock-ups for feedback`, `Agile / Scrum (sprints & daily standups) / XP (pair programming & TDD)`] },
+          { id: 'whitebox', label: 'Structural Testing', tag: '80/20 & Basis Path', desc: `Internal developer-led verification targeting high-risk logic paths.`, bullets: [`Pareto Principle: 80% of errors come from 20% of the system`, `Glass-Box (White-Box): internal code structure visible to tester`, `Basis Path Testing: executes every independent instruction path at least once`] },
+          { id: 'blackbox', label: 'Black-Box Stages', tag: 'Alpha → Beta → UAT', desc: `UX-focused validation without internal code knowledge across three release gates.`, bullets: [`1. Alpha: internal devs/UX test preliminary build`, `2. Beta (Pilot): limited real end-users test in real-world scenarios`, `3. User Acceptance (UAT): full operational sign-off against business goals`] }
+        ]
+      },
+      'sec-pm': {
+        root: { id: 'root', label: 'Project Management', tag: '4 Lifecycle Phases', desc: `Disciplined initiation, goal framing, planning documents, execution tracking, and formal closure keep IT initiatives on scope and budget.`, bullets: [`Initiation, Planning, Execution, Closure`, `SMART vs. CLEAR Goals`, `5 Planning Docs & Risk Mitigation`] },
+        nodes: [
+          { id: 'life', label: '4 Lifecycle Phases', tag: 'Start → Close', desc: `Sequential governance from business case to team dissolution.`, bullets: [`Initiation: business case + feasibility study`, `Planning: scope, roadmap, estimates, goals, 5 documents`, `Execution: kickoff, team/resources, KPIs, status meetings`, `Closure: completion, reflection, final financial/project docs`] },
+          { id: 'goals', label: 'SMART & CLEAR', tag: 'Goal Design', desc: `Complementary frameworks balancing measurable metrics with team motivation.`, bullets: [`SMART: Specific, Measurable, Attainable, Realistic, Timely`, `CLEAR: Collaborative, Limited, Emotional, Appreciable, Refinable`] },
+          { id: 'docs', label: '5 Planning Docs', tag: 'Planning Outputs', desc: `Essential baseline artifacts produced by the end of Planning.`, bullets: [`Scope Statement (objectives/deliverables) & WBS (manageable chunks)`, `Milestones (high-level checkpoints) & Communication Plan`, `Risk Management Plan (cost overruns & schedule delays)`] },
+          { id: 'risks', label: 'Risks & Mitigation', tag: 'Proactive Control', desc: `Addressing execution, integration, and unknown hazards early.`, bullets: [`Execution (budget, people, tech, reqs): mitigate via advance planning`, `Integration: assess system disruptions + secure stakeholder support`, `Unknown: frequent KPI/milestone monitoring + open communication`] }
+        ]
+      },
+      'sec-security': {
+        root: { id: 'root', label: 'Security, Ethics & Continuity', tag: 'Defense & Resilience', desc: `Safeguarding information assets combines organizational ethics, CIA Triad controls, federal compliance, cyber defense, and rapid recovery.`, bullets: [`Ethics, Privacy & CIA Triad`, `10 U.S. IT Laws & 5 Agencies`, `Malware, Attacks & Continuity (BCP/DRP)`] },
+        nodes: [
+          { id: 'cia', label: 'CIA Triad & Ethics', tag: 'Governance', desc: `Moral culture and core security properties governing every system.`, bullets: [`Confidentiality (access limits/encryption), Integrity (accuracy/no tampering), Availability (patching/maintenance)`, `Ethics & Code of Conduct vs. Privacy (personal data use) vs. Security (theft defense)`] },
+          { id: 'laws', label: 'Laws & Agencies', tag: 'Compliance', desc: `Statutory protections and standards bodies shaping U.S. IT governance.`, bullets: [`Laws: CFAA, ECPA, CALEA, ACPA, FISMA, HIPAA, Sec 508, FERPA, Computer Matching, DMCA`, `Bodies: CPSR (responsible tech), FCC, ITS/NTIA, NIST (standards), NSA (vital networks)`] },
+          { id: 'threats', label: 'Threats & Defenses', tag: 'Malware & Controls', desc: `Countering malicious code, network interception, and credential cracking.`, bullets: [`Malware: Virus, Worm, Spyware, Phishing; Attacks: DoS, MITM/Sniffing, Brute Force, Rainbow Tables`, `Defenses: Firewalls, Proxy Servers, Network Auditing, Antivirus, MFA, Encryption`] },
+          { id: 'bcdr', label: 'Continuity & Storage', tag: '99.999% Uptime', desc: `Resuming vital operations and restoring data after catastrophic disruptions.`, bullets: [`Five Nines (99.999% ≈ 3 sec downtime/wk); High Availability replicas`, `DRP (system recovery) vs. BCP (vital business continuity); Mirroring, Tape, Off-site`, `Hot Storage (fast, pricey: Azure/AWS Hot) vs. Cold Storage (slow, cheap: Glacier/Coldline/Tape)`] }
+        ]
+      }
+    };
+
+    const CLOUD_MODELS = {
+      iaas: {
+        tagline: 'Virtualized computing hardware over the internet — blank-slate sandbox where you rent servers, storage, and networking.',
+        examples: 'Amazon EC2, Google Compute Engine, Microsoft Azure Virtual Machines, IBM Cloud, DigitalOcean',
+        checks: 'Gives virtual machines/storage? Yes. Full OS setup control? Yes. Renting hardware resources? Yes.',
+        layers: [
+          { layer: 'Data', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Applications', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Operating System', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Physical Hardware', owner: 'Cloud Provider Manages', cls: 'owner-provider' }
+        ]
+      },
+      paas: {
+        tagline: 'Pre-configured platform and development tools for building, testing, and deploying apps without managing underlying hardware or OS.',
+        examples: 'Google App Engine, Microsoft Azure App Service, Heroku, AWS Elastic Beanstalk, Oracle Cloud Platform',
+        checks: 'Built for developers to launch apps? Yes. Quicker dev cycles without hardware chores? Yes.',
+        layers: [
+          { layer: 'Data', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Applications', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Operating System', owner: 'Cloud Provider Manages', cls: 'owner-provider' },
+          { layer: 'Physical Hardware', owner: 'Cloud Provider Manages', cls: 'owner-provider' }
+        ]
+      },
+      saas: {
+        tagline: 'Ready-to-use software applications delivered online via browser or app; provider handles all code updates, OS, and hardware.',
+        examples: 'Gmail, Microsoft 365, YouTube, Zoom, Dropbox, Salesforce',
+        checks: 'Works immediately like an everyday app? Yes. Zero infrastructure/OS setup? Yes.',
+        layers: [
+          { layer: 'Data', owner: 'You Manage', cls: 'owner-you' },
+          { layer: 'Applications', owner: 'Cloud Provider Manages', cls: 'owner-provider' },
+          { layer: 'Operating System', owner: 'Cloud Provider Manages', cls: 'owner-provider' },
+          { layer: 'Physical Hardware', owner: 'Cloud Provider Manages', cls: 'owner-provider' }
+        ]
+      }
+    };
+
+    const URL_PARTS = {
+      protocol: '<strong>Protocol (https://):</strong> Rules (HTTP/HTTPS) governing how hypertext data is transferred between web servers and browsers.',
+      subdomain: '<strong>Subdomain (portal.):</strong> Optional prefix dividing a domain into distinct services or servers.',
+      domain: '<strong>Domain (wgu):</strong> Human-readable organization identifier resolved to an IP address by DNS.',
+      tld: '<strong>Top-Level Domain (.edu):</strong> Highest DNS hierarchy suffix (.com, .gov, .org, .edu, .tv, or country codes like .uk).',
+      path: '<strong>Resource Path ID (/courses/it-foundations/):</strong> Directory path locating the resource folder on the web server.',
+      doc: '<strong>Document Name (study_guide.html):</strong> Exact hypertext file requested from the server.'
+    };
+
+    const SQL_OPS = {
+      inner: {
+        desc: 'Returns ONLY rows that have matching customer_id values in both Customers and Orders.',
+        code: `SELECT customers.customer_id, customers.name, orders.order_id\nFROM customers\nINNER JOIN orders ON customers.customer_id = orders.customer_id;`,
+        headers: ['customer_id', 'name', 'order_id'],
+        rows: [['C1', 'Alice', 'O101'], ['C2', 'Bob', 'O102']]
+      },
+      left: {
+        desc: 'Returns ALL rows from the left table (Customers) plus matched Orders; unmatched right columns return NULL.',
+        code: `SELECT customers.customer_id, customers.name, orders.order_id\nFROM customers\nLEFT JOIN orders ON customers.customer_id = orders.customer_id;`,
+        headers: ['customer_id', 'name', 'order_id'],
+        rows: [['C1', 'Alice', 'O101'], ['C2', 'Bob', 'O102'], ['C3', 'Cara', 'NULL']]
+      },
+      right: {
+        desc: 'Returns ALL rows from the right table (Orders) plus matched Customers; unmatched left columns return NULL.',
+        code: `SELECT customers.customer_id, customers.name, orders.order_id\nFROM customers\nRIGHT JOIN orders ON customers.customer_id = orders.customer_id;`,
+        headers: ['customer_id', 'name', 'order_id'],
+        rows: [['C1', 'Alice', 'O101'], ['C2', 'Bob', 'O102'], ['C9', 'NULL', 'O103']]
+      },
+      full: {
+        desc: 'Returns ALL rows when there is a match in either table, filling unmatched sides with NULL.',
+        code: `SELECT customers.customer_id, customers.name, orders.order_id\nFROM customers\nFULL JOIN orders ON customers.customer_id = orders.customer_id;`,
+        headers: ['customer_id', 'name', 'order_id'],
+        rows: [['C1', 'Alice', 'O101'], ['C2', 'Bob', 'O102'], ['C3', 'Cara', 'NULL'], ['C9', 'NULL', 'O103']]
+      },
+      cross: {
+        desc: 'PRODUCT (CROSS JOIN) produces the Cartesian product: every row of Table 1 paired with every row of Table 2 (3 × 3 = 9 rows shown truncated to key pairs).',
+        code: `SELECT customers.name, orders.order_id\nFROM customers\nCROSS JOIN orders;`,
+        headers: ['name', 'order_id'],
+        rows: [['Alice', 'O101'], ['Alice', 'O102'], ['Alice', 'O103'], ['Bob', 'O101'], ['Bob', 'O102'], ['Bob', 'O103'], ['Cara', 'O101'], ['Cara', 'O102'], ['Cara', 'O103']]
+      },
+      union: {
+        desc: 'UNION combines results of two SELECT statements with matching columns and removes duplicates (e.g. C1 Alice appearing in both departments appears once); UNION ALL keeps duplicates.',
+        code: `SELECT employee_id, employee_name FROM department1\nUNION\nSELECT employee_id, employee_name FROM department2;\n-- Use UNION ALL to retain duplicate rows`,
+        headers: ['employee_id (UNION)', 'employee_name'],
+        rows: [['E10', 'Alice'], ['E11', 'Bob'], ['E12', 'Dana']]
+      }
+    };
+
+    const QUIZZES = {
+      'sec-roles': {
+        q: 'Which IT role designs a zero-trust security model and secure access control blueprint rather than doing daily firewall ticket administration?',
+        opts: ['Security Administrator', 'Cybersecurity Architect', 'Web Administrator', 'Technical Support Analyst'],
+        ans: 1,
+        why: 'Cybersecurity Architects design and plan enterprise security systems (like zero-trust models), while Security Administrators install, configure, and troubleshoot operational tools.'
+      },
+      'sec-hardware': {
+        q: 'Which CPU register temporarily holds the actual data being transferred between main memory (RAM) and the CPU?',
+        opts: ['Program Counter (PC)', 'Memory Address Register (MAR)', 'Memory Data Register (MDR)', 'Accumulator (AC)'],
+        ans: 2,
+        why: 'The MDR holds the actual data in transit between memory and CPU; MAR holds the memory address, PC holds the next instruction address, and AC holds ALU results.'
+      },
+      'sec-network': {
+        q: 'Which network device sends messages only to the intended recipient instead of broadcasting to all devices, reducing network traffic by up to 99%?',
+        opts: ['Repeater', 'Hub', 'Switch', 'Coaxial Tap'],
+        ans: 2,
+        why: 'Switches forward frames only to the intended destination port, cutting overall traffic by up to 99% compared to broadcast hubs.'
+      },
+      'sec-os': {
+        q: 'Which software category has NO EULA and NO intellectual property protections, allowing anyone to download and use it at their own discretion?',
+        opts: ['Freeware', 'Shareware', 'Public Domain', 'Closed-Source'],
+        ans: 2,
+        why: 'Both Freeware and Shareware remain protected by EULAs and copyright; Public Domain software has neither EULA nor IP protections.'
+      },
+      'sec-db': {
+        q: 'A customer record appears in the billing system with one phone number and in the support system with a different phone number. Which two dirty-data issues apply?',
+        opts: ['Complete & Valid', 'Conflicting & Unsynchronized', 'Duplicate & Boolean', 'Flat-File & Object-Oriented'],
+        ans: 1,
+        why: 'Same records holding different attribute values are Conflicting, and data not properly shared between two systems is Unsynchronized.'
+      },
+      'sec-sdlc': {
+        q: 'Updating an existing enterprise application so it continues running cleanly after a major operating system upgrade is an example of which SDLC maintenance type?',
+        opts: ['Corrective Maintenance', 'Adaptive Maintenance', 'Perfective Maintenance', 'Basis Path Maintenance'],
+        ans: 1,
+        why: 'Adaptive maintenance updates software for new OS or hardware environments; Corrective fixes bugs, Perfective boosts performance, and Preventative avoids future failures.'
+      },
+      'sec-pm': {
+        q: 'Which project planning artifact breaks the overall project into smaller, manageable work segments?',
+        opts: ['Communication Plan', 'Work Breakdown Structure (WBS)', 'Feasibility Study', 'Closure Report'],
+        ans: 1,
+        why: 'The Work Breakdown Structure (WBS) decomposes a project into manageable segments produced during the Planning phase.'
+      },
+      'sec-security': {
+        q: 'Which off-site recovery option uses lower-performance media for infrequent access, offering slower restoration at a significantly lower cost (e.g. Amazon Glacier or Tape)?',
+        opts: ['Hot Storage', 'Data Mirroring', 'Cold Storage', 'High Availability Replica'],
+        ans: 2,
+        why: 'Cold Storage (tape, Amazon Glacier, Google Coldline) minimizes cost with slower retrieval, whereas Hot Storage delivers rapid recovery on premium equipment.'
+      }
+    };
+
+    let appState = {
+      reviewed: {},
+      quizCorrect: {},
+      selectedNodes: {},
+      cloudModel: 'iaas',
+      urlPart: 'protocol',
+      sqlOp: 'inner'
+    };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    async function persistState() {
+      const ind = document.getElementById('save-indicator');
+      if (window.notebookAppApi && typeof window.notebookAppApi.setAppState === 'function') {
+        try {
+          await window.notebookAppApi.setAppState(appState);
+          if (ind) ind.textContent = 'Progress saved to Notebook';
+        } catch (e) {
+          if (ind) ind.textContent = 'Session active (local view)';
+        }
+      }
+    }
+
+    function renderSidebar() {
+      const list = document.getElementById('rail-nav-list');
+      if (!list) return;
+      list.innerHTML = SECTIONS.map((s, idx) => {
+        const isDone = Boolean(appState.reviewed[s.id]);
+        return `<li>
+          <button type="button" class="rail-link ${idx === 0 ? 'is-active' : ''}" data-target="${s.id}" onclick="jumpToSection('${s.id}')">
+            <span style="display:flex; align-items:center; gap:var(--space-sm);">
+              <span class="rail-num">${s.num}</span>
+              <span>${escapeHtml(s.label)}</span>
+            </span>
+            <span class="rail-status ${isDone ? 'is-done' : ''}">${isDone ? 'DONE' : 'OPEN'}</span>
+          </button>
+        </li>`;
+      }).join('');
+    }
+
+    function updateKPIs() {
+      const revCount = SECTIONS.filter(s => appState.reviewed[s.id]).length;
+      const quizCount = SECTIONS.filter(s => appState.quizCorrect[s.id]).length;
+      const revEl = document.getElementById('kpi-reviewed');
+      const quizEl = document.getElementById('kpi-quiz');
+      if (revEl) revEl.textContent = `${revCount} / ${SECTIONS.length}`;
+      if (quizEl) quizEl.textContent = `${quizCount} / ${SECTIONS.length}`;
+
+      SECTIONS.forEach(s => {
+        const btn = document.getElementById(`btn-review-${s.id}`);
+        if (btn) {
+          const done = Boolean(appState.reviewed[s.id]);
+          btn.textContent = done ? 'Reviewed ✓' : 'Mark Section Reviewed';
+          btn.className = done ? 'btn btn-primary btn-sm' : 'btn btn-secondary btn-sm';
+        }
+      });
+      renderSidebar();
+    }
+
+    function toggleReviewed(secId) {
+      appState.reviewed[secId] = !appState.reviewed[secId];
+      updateKPIs();
+      persistState();
+    }
+
+    function jumpToSection(secId) {
+      const el = document.getElementById(secId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const sel = document.getElementById('mobile-section-select');
+      if (sel) sel.value = secId;
+    }
+
+    function renderMindMap(secId) {
+      const container = document.getElementById(`mm-${secId}`);
+      const data = MINDMAPS[secId];
+      if (!container || !data) return;
+
+      const selectedId = appState.selectedNodes[secId] || 'root';
+      const nodes = data.nodes;
+      const svgH = 330;
+      const rootX = 24, rootY = 132, rootW = 190, rootH = 62;
+      const colX = 290, nodeW = 245, nodeH = 44;
+      const gapY = (svgH - 28 - nodes.length * nodeH) / Math.max(1, nodes.length - 1);
+
+      let pathsHtml = '';
+      let nodesHtml = '';
+
+      nodes.forEach((n, i) => {
+        const ny = 14 + i * (nodeH + gapY);
+        const startX = rootX + rootW;
+        const startY = rootY + rootH / 2;
+        const endX = colX;
+        const endY = ny + nodeH / 2;
+        const midX = (startX + endX) / 2;
+        const isSel = selectedId === n.id;
+
+        pathsHtml += `<path d="M ${startX} ${startY} C ${midX} ${startY}, ${midX} ${endY}, ${endX} ${endY}" fill="none" stroke="${isSel ? 'var(--primary)' : 'var(--outline)'}" stroke-width="${isSel ? '2' : '1.25'}" />`;
+
+        nodesHtml += `<g class="mm-node ${isSel ? 'is-selected' : ''}" tabindex="0" role="button" aria-label="Inspect ${escapeHtml(n.label)}" onclick="selectMindMapNode('${secId}', '${n.id}')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMindMapNode('${secId}','${n.id}');}">
+          <rect x="${colX}" y="${ny}" width="${nodeW}" height="${nodeH}" fill="var(--surface-container)" stroke="var(--outline)" stroke-width="1" />
+          <text x="${colX + 12}" y="${ny + 20}" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="600" fill="var(--on-surface)">${escapeHtml(n.label)}</text>
+          <text x="${colX + 12}" y="${ny + 35}" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="${isSel ? 'var(--on-primary)' : 'var(--on-surface-variant)'}">${escapeHtml(n.tag.toUpperCase())}</text>
+        </g>`;
+      });
+
+      const rootSel = selectedId === 'root';
+      const rootSvg = `<g class="mm-node is-root ${rootSel ? 'is-selected' : ''}" tabindex="0" role="button" aria-label="Inspect ${escapeHtml(data.root.label)}" onclick="selectMindMapNode('${secId}', 'root')" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();selectMindMapNode('${secId}','root');}">
+        <rect x="${rootX}" y="${rootY}" width="${rootW}" height="${rootH}" stroke-width="1.5" />
+        <text x="${rootX + 14}" y="${rootY + 26}" font-family="IBM Plex Sans, sans-serif" font-size="14" font-weight="600">${escapeHtml(data.root.label)}</text>
+        <text x="${rootX + 14}" y="${rootY + 45}" font-family="IBM Plex Mono, monospace" font-size="10.5" fill="var(--primary-container)">CLICK ANY NODE</text>
+      </g>`;
+
+      const activeNode = selectedId === 'root' ? data.root : (nodes.find(n => n.id === selectedId) || data.root);
+
+      container.innerHTML = `
+        <div class="mindmap-canvas-wrap">
+          <div class="mindmap-toolbar">
+            <span class="label">Interactive Visual Mind Map &bull; Click Nodes to Inspect</span>
+            <button type="button" class="btn btn-ghost btn-sm" onclick="selectMindMapNode('${secId}', 'root')">Reset Focus</button>
+          </div>
+          <div class="mindmap-svg-box">
+            <svg class="mindmap-svg" viewBox="0 0 565 ${svgH}" role="img" aria-label="${escapeHtml(data.root.label)} mind map">
+              ${pathsHtml}
+              ${rootSvg}
+              ${nodesHtml}
+            </svg>
+          </div>
+        </div>
+        <div class="mindmap-inspector" aria-live="polite">
+          <span class="inspector-badge">${escapeHtml(activeNode.tag)}</span>
+          <h3 class="inspector-title">${escapeHtml(activeNode.label)}</h3>
+          <p class="inspector-desc">${escapeHtml(activeNode.desc)}</p>
+          <ul class="inspector-list">
+            ${activeNode.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
+
+    function selectMindMapNode(secId, nodeId) {
+      appState.selectedNodes[secId] = nodeId;
+      renderMindMap(secId);
+      persistState();
+    }
+
+    function selectCloudModel(modelKey, btnEl) {
+      appState.cloudModel = modelKey;
+      const data = CLOUD_MODELS[modelKey];
+      const out = document.getElementById('cloud-model-output');
+      if (!data || !out) return;
+
+      if (btnEl && btnEl.parentElement) {
+        Array.from(btnEl.parentElement.querySelectorAll('.tab-btn')).forEach(b => b.classList.remove('is-active'));
+        btnEl.classList.add('is-active');
+      }
+
+      out.innerHTML = `
+        <div class="layer" style="background:var(--background); border:var(--rule); margin-top:var(--space-sm);">
+          <p style="margin:0 0 var(--space-xs);"><strong>Summary:</strong> ${escapeHtml(data.tagline)}</p>
+          <p style="margin:0 0 var(--space-xs); font-size:0.875rem;"><strong>Diagnostic Questions:</strong> ${escapeHtml(data.checks)}</p>
+          <p style="margin:0 0 var(--space-md); font-size:0.875rem;"><strong>Examples:</strong> <span class="mono">${escapeHtml(data.examples)}</span></p>
+          <div>
+            ${data.layers.map(l => `
+              <div class="stack-row">
+                <strong style="font-size:0.875rem;">${escapeHtml(l.layer)}</strong>
+                <div><span class="owner-pill ${l.cls}">${escapeHtml(l.owner)}</span></div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    function selectUrlPart(partKey, btnEl) {
+      appState.urlPart = partKey;
+      const descEl = document.getElementById('url-part-desc');
+      if (descEl && URL_PARTS[partKey]) {
+        descEl.innerHTML = URL_PARTS[partKey];
+      }
+      if (btnEl && btnEl.parentElement) {
+        Array.from(btnEl.parentElement.querySelectorAll('.url-part')).forEach(b => b.classList.remove('is-active'));
+        btnEl.classList.add('is-active');
+      }
+    }
+
+    function selectSqlOp(opKey, btnEl) {
+      appState.sqlOp = opKey;
+      const op = SQL_OPS[opKey];
+      const out = document.getElementById('sql-lab-output');
+      if (!op || !out) return;
+
+      if (btnEl && btnEl.parentElement) {
+        Array.from(btnEl.parentElement.querySelectorAll('.tab-btn')).forEach(b => b.classList.remove('is-active'));
+        btnEl.classList.add('is-active');
+      }
+
+      out.innerHTML = `
+        <p style="margin:var(--space-xs) 0; font-size:0.875rem;">${escapeHtml(op.desc)}</p>
+        <pre class="code-block">${escapeHtml(op.code)}</pre>
+        <div class="table-wrap" style="margin-top:var(--space-sm); background:var(--background);">
+          <table class="carbon-table">
+            <thead><tr>${op.headers.map(h => `<th>${escapeHtml(h)}</th>`).join('')}</tr></thead>
+            <tbody>
+              ${op.rows.map(r => `<tr>${r.map(c => `<td class="mono">${escapeHtml(c)}</td>`).join('')}</tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+
+    function renderQuiz(secId) {
+      const box = document.getElementById(`quiz-${secId}`);
+      const qData = QUIZZES[secId];
+      if (!box || !qData) return;
+
+      const solved = Boolean(appState.quizCorrect[secId]);
+      box.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:var(--space-sm); flex-wrap:wrap;">
+          <span class="label">Quick Recall Check</span>
+          <span class="tag ${solved ? '' : 'tag-neutral'}">${solved ? 'Correct ✓' : 'Test Yourself'}</span>
+        </div>
+        <p style="margin:0; font-weight:600; font-size:0.9375rem;">${escapeHtml(qData.q)}</p>
+        <div class="recall-options">
+          ${qData.opts.map((opt, idx) => `
+            <button type="button" class="recall-opt ${solved && idx === qData.ans ? 'is-correct' : ''}" onclick="answerQuiz('${secId}', ${idx}, this)">
+              ${escapeHtml(opt)}
+            </button>
+          `).join('')}
+        </div>
+        <p id="quiz-fb-${secId}" style="margin:0; font-size:0.8125rem; color:var(--on-surface-variant);">${solved ? escapeHtml(qData.why) : 'Select an answer to verify your recall.'}</p>
+      `;
+    }
+
+    function answerQuiz(secId, choiceIdx, btnEl) {
+      const qData = QUIZZES[secId];
+      const fb = document.getElementById(`quiz-fb-${secId}`);
+      if (!qData || !fb) return;
+
+      const parent = btnEl.parentElement;
+      if (parent) {
+        Array.from(parent.querySelectorAll('.recall-opt')).forEach(b => b.classList.remove('is-correct', 'is-wrong'));
+      }
+
+      if (choiceIdx === qData.ans) {
+        btnEl.classList.add('is-correct');
+        fb.textContent = qData.why;
+        fb.style.color = 'var(--positive)';
+        appState.quizCorrect[secId] = true;
+        updateKPIs();
+        persistState();
+      } else {
+        btnEl.classList.add('is-wrong');
+        fb.textContent = 'Not quite — check the mind map or cheat-sheet table above and try another option.';
+        fb.style.color = 'var(--error)';
+      }
+    }
+
+    function applySearchFilter(rawQuery) {
+      const q = String(rawQuery || '').trim().toLowerCase();
+      const dInput = document.getElementById('desktop-search');
+      const mInput = document.getElementById('mobile-search');
+      if (dInput && dInput.value !== rawQuery) dInput.value = rawQuery;
+      if (mInput && mInput.value !== rawQuery) mInput.value = rawQuery;
+
+      const blocks = document.querySelectorAll('.searchable-block');
+      let visibleBlocks = 0;
+      blocks.forEach(b => {
+        if (!q || b.textContent.toLowerCase().includes(q)) {
+          b.classList.remove('is-search-hidden');
+          visibleBlocks++;
+        } else {
+          b.classList.add('is-search-hidden');
+        }
+      });
+
+      const status = document.getElementById('search-status');
+      if (status) {
+        status.textContent = q
+          ? `Filter "${q}" matched ${visibleBlocks} reference block${visibleBlocks === 1 ? '' : 's'}`
+          : 'Showing all 8 curriculum sections';
+      }
+    }
+
+    function handleResetProgress(btn) {
+      if (btn.dataset.armed !== 'true') {
+        btn.dataset.armed = 'true';
+        btn.textContent = 'Click again to confirm reset';
+        setTimeout(() => {
+          if (btn.dataset.armed === 'true') {
+            btn.dataset.armed = 'false';
+            btn.textContent = 'Reset Progress';
+          }
+        }, 4000);
+        return;
+      }
+      btn.dataset.armed = 'false';
+      btn.textContent = 'Reset Progress';
+      appState = { reviewed: {}, quizCorrect: {}, selectedNodes: {}, cloudModel: 'iaas', urlPart: 'protocol', sqlOp: 'inner' };
+      SECTIONS.forEach(s => { renderMindMap(s.id); renderQuiz(s.id); });
+      updateKPIs();
+      persistState();
+    }
+
+    function exportStudyNotes() {
+      const lines = [
+        'INTRODUCTION TO IT — STUDY PROGRESS SUMMARY',
+        '===========================================',
+        ''
+      ];
+      SECTIONS.forEach(s => {
+        const rev = appState.reviewed[s.id] ? 'Reviewed' : 'Pending';
+        const qz = appState.quizCorrect[s.id] ? 'Passed' : 'Not answered';
+        lines.push(`${s.num}. ${s.label} — Status: ${rev} | Recall Check: ${qz}`);
+      });
+      const content = lines.join('\n');
+      if (window.notebookAppApi && typeof window.notebookAppApi.triggerFileDownload === 'function') {
+        window.notebookAppApi.triggerFileDownload({
+          content: content,
+          contentType: 'text/plain',
+          encoding: 'UTF-8',
+          filename: 'intro-to-it-study-summary.txt'
+        });
+      }
+    }
+
+    function setupScrollSpy() {
+      if (!('IntersectionObserver' in window)) return;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('data-section-id');
+            document.querySelectorAll('.rail-link').forEach(link => {
+              link.classList.toggle('is-active', link.getAttribute('data-target') === id);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: 0.01 });
+
+      document.querySelectorAll('.unit-section').forEach(sec => obs.observe(sec));
+    }
+
+    async function initPortal() {
+      if (window.notebookAppApi && typeof window.notebookAppApi.getAppState === 'function') {
+        try {
+          const saved = await window.notebookAppApi.getAppState();
+          if (saved && typeof saved === 'object') {
+            appState = Object.assign(appState, saved);
+          }
+        } catch (e) {
+          /* fallback to clean initial state */
+        }
+      }
+
+      SECTIONS.forEach(s => {
+        renderMindMap(s.id);
+        renderQuiz(s.id);
+      });
+
+      selectCloudModel(appState.cloudModel || 'iaas');
+      selectUrlPart(appState.urlPart || 'protocol');
+      selectSqlOp(appState.sqlOp || 'inner');
+      updateKPIs();
+      setupScrollSpy();
+
+      if (window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+      }
+      if (window.notebookAppApi && typeof window.notebookAppApi.notifyAppReady === 'function') {
+        window.notebookAppApi.notifyAppReady();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initPortal);
+  </script>
+</body>
+</html>
